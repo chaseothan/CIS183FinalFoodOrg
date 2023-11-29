@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //later in the if statement check if the user name and password are valid
-                if ()
-                {
+                if (true)
+                    {
                     startActivity(HomePageintent);
-                }
+                    }
             }
         });
 
