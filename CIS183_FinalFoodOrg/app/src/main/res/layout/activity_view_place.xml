@@ -22,13 +22,13 @@
         android:layout_height="0dp"
         android:layout_marginTop="66dp"
         android:layout_marginBottom="73dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_viewPlace_list"
+        app:layout_constraintBottom_toBottomOf="@+id/button13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_viewPlace_list"
+        android:id="@+id/button13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="61dp"
