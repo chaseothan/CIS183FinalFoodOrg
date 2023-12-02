@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lv_v_viewPlace_places"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#cdbf9d"
     tools:context=".ViewPlace">
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_v_viewPlace_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -23,38 +24,38 @@
         android:layout_height="0dp"
         android:layout_marginTop="66dp"
         android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView44"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_viewPlace_editPlace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView44"
+        android:id="@+id/btn_v_viewPlace_editPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView45"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_viewPlace_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/_dynamic"
         app:srcCompat="@drawable/editplace" />
 
     <ImageView
-        android:id="@+id/imageView45"
+        android:id="@+id/btn_v_viewPlace_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView46"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_viewPlace_home"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView44"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_viewPlace_editPlace"
         app:srcCompat="@drawable/listbtn" />
 
     <ImageView
-        android:id="@+id/imageView46"
+        android:id="@+id/btn_v_viewPlace_home"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="11dp"
@@ -62,8 +63,8 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView45"
-        app:layout_constraintTop_toBottomOf="@+id/imageView44"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_viewPlace_list"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_viewPlace_editPlace"
         app:srcCompat="@drawable/home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

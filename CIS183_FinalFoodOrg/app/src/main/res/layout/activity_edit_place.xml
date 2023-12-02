@@ -28,7 +28,7 @@
         app:srcCompat="@drawable/name" />
 
     <EditText
-        android:id="@+id/editTextText18"
+        android:id="@+id/et_v_editPlace_nameOfPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -40,24 +40,24 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView48" />
 
     <ImageView
-        android:id="@+id/imageView49"
+        android:id="@+id/btn_v_editPlace_editPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView50"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_editPlace_home"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/editplace" />
 
     <ImageView
-        android:id="@+id/imageView50"
+        android:id="@+id/btn_v_editPlace_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView49"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_editPlace_editPlace"
         app:srcCompat="@drawable/home" />
 </androidx.constraintlayout.widget.ConstraintLayout>
