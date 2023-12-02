@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00E737"
     tools:context=".MainActivity">
 
     <TextView
@@ -11,35 +12,25 @@
         android:layout_width="144dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="466dp"
         android:text=" Food Tracker login"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/et_v_main_username"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_v_main_addUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
-        android:text="Add User"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_edituser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_login" />
-
-    <Button
         android:id="@+id/btn_v_main_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="15dp"
         android:text="Login"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_addUser"
-        app:layout_constraintEnd_toEndOf="@+id/btn_v_main_addUser"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_main_password" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_main_addUser"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/et_v_main_username"
@@ -58,11 +49,11 @@
         android:id="@+id/et_v_main_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_login"
+        app:layout_constraintBottom_toTopOf="@+id/lv_v_main_listofusers"
         app:layout_constraintStart_toStartOf="@+id/et_v_main_username"
         app:layout_constraintTop_toBottomOf="@+id/et_v_main_username" />
 
@@ -72,20 +63,34 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="42dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_edituser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_edituser" />
+        app:layout_constraintTop_toBottomOf="@+id/et_v_main_password" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_v_main_edituser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
+        android:layout_width="134dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_addUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lv_v_main_listofusers"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageView
+        android:id="@+id/btn_v_main_addUser"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="88dp"
         android:layout_marginBottom="11dp"
-        android:text="Edit"
-        app:layout_constraintBottom_toTopOf="@+id/lv_v_main_listofusers"
-        app:layout_constraintStart_toStartOf="@+id/btn_v_main_addUser"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_addUser" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_main_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_edituser"
+        app:srcCompat="@drawable/add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

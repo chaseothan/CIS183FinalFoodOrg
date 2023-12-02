@@ -3,17 +3,22 @@ package com.example.cis183_finalfoodorg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //make image view later when we get the asset
     Button btn_j_main_login;
-    Button btn_j_main_addNewUser;
-    Button btn_j_main_editUser;
+    ImageView btn_j_main_addNewUser;
+    ImageView btn_j_main_editUser;
     ListView lv_j_main_listOfUsers;
     EditText et_j_main_username;
     EditText et_j_main_password;
@@ -40,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         et_j_main_password = findViewById(R.id.et_v_main_password);
         et_j_main_username = findViewById(R.id.et_v_main_username);
 
-        btn_j_main_addNewUser = findViewById(R.id.btn_v_main_addUser);
-        btn_j_main_editUser = findViewById(R.id.btn_v_main_edituser);
+        btn_j_main_addNewUser =(ImageView) findViewById(R.id.btn_v_main_addUser);
+        btn_j_main_editUser =(ImageView) findViewById(R.id.btn_v_main_edituser);
         btn_j_main_login = findViewById(R.id.btn_v_main_login);
 
 
@@ -80,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
         btn_j_main_addNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("did","click");
                 startActivity(NewUserPageIntent);
+
             }
         });
         btn_j_main_editUser.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 //later in the if statement check if the user name and password are valid
                 if (true)
                     {
+                        Log.d("did","click");
                     startActivity(HomePageintent);
                     }
             }

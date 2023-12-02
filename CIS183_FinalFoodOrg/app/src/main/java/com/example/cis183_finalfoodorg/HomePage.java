@@ -18,7 +18,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
         TotalListIntent = new Intent(HomePage.this, TotalList.class);
         PlaceListIntent = new Intent(HomePage.this, PlaceList.class);
