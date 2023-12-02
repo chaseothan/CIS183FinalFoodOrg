@@ -4,93 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00E737"
+    android:background="#cdbf9d"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="144dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="466dp"
-        android:text=" Food Tracker login"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_v_main_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="77dp"
-        android:layout_marginBottom="15dp"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_v_main_addUser"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/et_v_main_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Username"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/et_v_main_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
     <EditText
         android:id="@+id/et_v_main_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="84dp"
         android:ems="10"
-        android:hint="Password"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/lv_v_main_listofusers"
-        app:layout_constraintStart_toStartOf="@+id/et_v_main_username"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_main_username" />
-
-    <ListView
-        android:id="@+id/lv_v_main_listofusers"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_edituser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_main_password" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_enter"
+        app:layout_constraintStart_toStartOf="@+id/imageView14"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
     <ImageView
-        android:id="@+id/btn_v_main_edituser"
-        android:layout_width="134dp"
+        android:id="@+id/btn_v_main_removeUser"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_addUser"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_main_addUser"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_enter"
+        app:srcCompat="@drawable/removeuser" />
+
+    <ImageView
+        android:id="@+id/btn_v_main_enter"
+        android:layout_width="147dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_removeUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lv_v_main_listofusers"
-        app:srcCompat="@drawable/edit" />
+        app:layout_constraintTop_toBottomOf="@+id/et_v_main_password"
+        app:srcCompat="@drawable/enter" />
 
     <ImageView
         android:id="@+id/btn_v_main_addUser"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="11dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_v_main_login"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_main_removeUser"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_edituser"
-        app:srcCompat="@drawable/add" />
+        app:srcCompat="@drawable/adduser" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_login" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="189dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_main_password"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="@drawable/login_ltems" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

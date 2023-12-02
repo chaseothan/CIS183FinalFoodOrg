@@ -4,6 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#cdbf9d"
     tools:context=".AddPlace">
 
+    <ImageView
+        android:id="@+id/imageView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_place" />
+
+    <ImageView
+        android:id="@+id/imageView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="266dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_v_addPlace_nameOfPlace"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addplaceitems" />
+
+    <EditText
+        android:id="@+id/et_v_addPlace_nameOfPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView41" />
+
+    <ImageView
+        android:id="@+id/btn_v_addPlace_addPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="109dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_addPlace_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/addplace" />
+
+    <ImageView
+        android:id="@+id/btn_v_addPlace_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_addPlace_addPlace"
+        app:layout_constraintTop_toTopOf="@+id/btn_v_addPlace_addPlace"
+        app:srcCompat="@drawable/home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,68 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#cdbf9d"
     tools:context=".PlaceList">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginBottom="12dp"
-        android:text="Place"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ListView
+        android:id="@+id/lv_v_placeList_listOfPlaces"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="71dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="65dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button9"
+        android:layout_height="320dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button8"
+    <ImageView
+        android:id="@+id/imageView36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="516dp"
-        android:text="Add Place"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/place" />
 
-    <Button
-        android:id="@+id/button9"
+    <ImageView
+        android:id="@+id/btn_v_placeList_addPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="27dp"
-        android:text="Remove Place"
-        app:layout_constraintBottom_toTopOf="@+id/button11"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
-        android:layout_marginBottom="33dp"
-        android:text="List"
+        android:layout_marginStart="27dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/addplace" />
 
-    <Button
-        android:id="@+id/button11"
+    <ImageView
+        android:id="@+id/btn_v_placeList_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
-        android:text="Home"
+        android:layout_marginBottom="37dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_placeList_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/listbtn" />
+
+    <ImageView
+        android:id="@+id/btn_v_placeList_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/button9" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
