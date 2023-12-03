@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     //make image view later when we get the asset
     ImageView btn_j_main_login;
     ImageView btn_j_main_addNewUser;
-    ImageView btn_j_main_editUser;
     EditText et_j_main_username;
     EditText et_j_main_password;
 
@@ -24,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     Intent HomePageintent;
     Intent NewUserPageIntent;
-    Intent EditUserIntent;
-
 
 
 
@@ -42,11 +39,9 @@ public class MainActivity extends AppCompatActivity {
         et_j_main_username = findViewById(R.id.et_v_main_username);
 
         btn_j_main_addNewUser =(ImageView) findViewById(R.id.btn_v_main_addUser);
-        btn_j_main_editUser =(ImageView) findViewById(R.id.btn_v_main_removeUser);
         btn_j_main_login =(ImageView) findViewById(R.id.btn_v_main_enter);
 
 
-        EditUserIntent = new Intent(MainActivity.this, EditUser.class);
         NewUserPageIntent = new Intent(MainActivity.this, NewUserPage.class);
         HomePageintent = new Intent(MainActivity.this, HomePage.class);
 
@@ -67,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("did","click");
                 startActivity(NewUserPageIntent);
 
-            }
-        });
-        btn_j_main_editUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(EditUserIntent);
             }
         });
         btn_j_main_login.setOnClickListener(new View.OnClickListener() {

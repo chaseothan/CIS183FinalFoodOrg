@@ -11,11 +11,12 @@
         android:id="@+id/et_v_main_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="48dp"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_main_password"
         app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="@+id/imageView14" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <EditText
         android:id="@+id/et_v_main_password"
@@ -26,25 +27,14 @@
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_main_enter"
         app:layout_constraintStart_toStartOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
-
-    <ImageView
-        android:id="@+id/btn_v_main_removeUser"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_v_main_addUser"
-        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_enter"
-        app:srcCompat="@drawable/removeuser" />
+        app:layout_constraintTop_toBottomOf="@+id/et_v_main_username" />
 
     <ImageView
         android:id="@+id/btn_v_main_enter"
         android:layout_width="147dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_removeUser"
+        android:layout_marginBottom="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_main_addUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_v_main_password"
@@ -54,12 +44,11 @@
         android:id="@+id/btn_v_main_addUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_v_main_removeUser"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_main_enter"
         app:srcCompat="@drawable/adduser" />
 
     <ImageView
@@ -68,8 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        android:layout_marginBottom="92dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_main_username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user_login" />
@@ -77,8 +66,10 @@
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="189dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/et_v_main_password"
+        android:layout_height="125dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_v_main_password"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
