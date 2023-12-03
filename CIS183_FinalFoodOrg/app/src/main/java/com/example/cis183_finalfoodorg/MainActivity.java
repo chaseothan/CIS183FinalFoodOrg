@@ -14,10 +14,9 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
 
     //make image view later when we get the asset
-    Button btn_j_main_login;
+    ImageView btn_j_main_login;
     ImageView btn_j_main_addNewUser;
     ImageView btn_j_main_editUser;
-    ListView lv_j_main_listOfUsers;
     EditText et_j_main_username;
     EditText et_j_main_password;
 
@@ -38,14 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         //btn_j_main_totalList = findViewById(R.id.btn_v_main_editUser);
         //btn_j_main_placeList = findViewById(R.id.btn_v_main_removeUser);
-        lv_j_main_listOfUsers = findViewById(R.id.lv_v_main_listofusers);
 
         et_j_main_password = findViewById(R.id.et_v_main_password);
         et_j_main_username = findViewById(R.id.et_v_main_username);
 
         btn_j_main_addNewUser =(ImageView) findViewById(R.id.btn_v_main_addUser);
         btn_j_main_editUser =(ImageView) findViewById(R.id.btn_v_main_removeUser);
-        btn_j_main_login = findViewById(R.id.btn_v_main_login);
+        btn_j_main_login =(ImageView) findViewById(R.id.btn_v_main_enter);
 
 
         EditUserIntent = new Intent(MainActivity.this, EditUser.class);
@@ -62,23 +60,6 @@ public class MainActivity extends AppCompatActivity {
     public void ButtonClickEventHandler()
     {
 
-        //btn_j_main_totalList.setOnClickListener(new View.OnClickListener() {
-           // @Override
-           // public void onClick(View view)
-           // {
-
-            //    startActivity(TotalListIntent);
-
-            //}
-        //});
-
-        //btn_j_main_placeList.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-          //  public void onClick(View view)
-          //  {
-           //     startActivity(PlaceListIntent);
-          //  }
-       // });
 
         btn_j_main_addNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
