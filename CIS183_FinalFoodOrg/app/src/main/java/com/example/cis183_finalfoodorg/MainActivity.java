@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     EditText et_j_main_username;
     EditText et_j_main_password;
 
-
+    DatabaseHelper dbHelper;
 
     Intent HomePageintent;
     Intent NewUserPageIntent;
@@ -30,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d("Main", "First");
+        dbHelper = new DatabaseHelper(this);
+
+        Log.d("Main", "Initialize all tables");
+        dbHelper.initializeAllTables();
+
+        Log.d("USERS Count: ", dbHelper.totalNumberEntries("Users") + "");
+        Log.d("PLACES Count: ", dbHelper.totalNumberEntries("Places") + "");
+        Log.d("ITEMS Count: ", dbHelper.totalNumberEntries("Items") + "");
 
 
         //btn_j_main_totalList = findViewById(R.id.btn_v_main_editUser);
