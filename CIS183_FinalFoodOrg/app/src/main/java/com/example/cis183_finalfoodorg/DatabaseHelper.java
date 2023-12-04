@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public DatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME , null, 5);
+        super(context, DATABASE_NAME , null, 7);
     }
 
 
@@ -26,9 +26,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
         Log.d("onCreate", "Start");
-        db.execSQL("Create table if not exists " + TABLE_USERS + " (username varchar(255) primary key not null,password varchar (255));");
-        db.execSQL("Create table if not exists " + TABLE_PLACES + " (placeId integer primary key autoincrement not null,placename varchar (255), username2);");
-        db.execSQL("Create table if not exists " + TABLE_ITEMS + " (itemId integer primary key autoincrement not null,product varchar (255),amount varchar (255),cost varchar (255), expdate varchar (255), purchasedate varchar(255), placeId2);");
+        db.execSQL("Create table if not exists " + TABLE_USERS + " (userId integer primary key autoincrement not null, username varchar (255), password varchar (255));");
+        db.execSQL("Create table if not exists " + TABLE_PLACES + " (placeId integer primary key autoincrement not null,placename varchar (255), userId integer, foreign key (userId) references users (userId));");
+        db.execSQL("Create table if not exists " + TABLE_ITEMS + " (itemId integer primary key autoincrement not null,product varchar (255),amount varchar (255),cost varchar (255), expdate varchar (255), purchasedate varchar(255), placeId integer, foreign key (placeId) references places (placeId));");
         Log.d("onCreate", "End");
 
 
@@ -73,9 +73,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
             //  username
             //  password
 
-            db.execSQL("INSERT INTO " + TABLE_USERS + "  VALUES ('zmoore', 'coolpass12');");
-            db.execSQL("INSERT INTO " + TABLE_USERS + "  VALUES ('sthomas', 'beanSoup7');");
-            db.execSQL("INSERT INTO " + TABLE_USERS + "  VALUES ('dwaneJson', 'theRockDudes');");
+            db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('zmoore', 'coolpass12');");
+            db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('sthomas', 'beanSoup7');");
+            db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('dwaneJson', 'theRockDudes');");
 
             db.close();
 
@@ -101,14 +101,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
             //  placename
             //  userId
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username2) VALUES ('Cabnet', 'zmoore');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Cabnet', '1');");
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username2) VALUES ('Fridge', 'sthomas');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username2) VALUES ('Freezer', 'sthomas');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Fridge', '2');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Freezer', '2');");
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username2) VALUES ('Cabnet', 'dwaneJson');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username2) VALUES ('Fridge', 'dwaneJson');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username2) VALUES ('Freezer', 'dwaneJson');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Cabnet', '3');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Fridge', '3');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Freezer', '3');");
 
             db.close();
 
@@ -139,13 +139,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
             //  placeId
 
 
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId2) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId2) VALUES ('Bacon', '6', '12.99', '12/05/2023', '11/20/2023', '2');");
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId2) VALUES ('Mayo', '1', '4.99', '3/19/2024', '12/03/2023', '3');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Bacon', '6', '12.99', '12/05/2023', '11/20/2023', '2');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Mayo', '1', '4.99', '3/19/2024', '12/03/2023', '3');");
 
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId2) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '4');");
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId2) VALUES ('Turkey', '1', '35.50', '12/8/2023', '12/03/2023', '5');");
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId2) VALUES ('Horse', '20', '16', '12/04/2023', '12/03/2023', '6');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '4');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Turkey', '1', '35.50', '12/8/2023', '12/03/2023', '5');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Horse', '20', '16', '12/04/2023', '12/03/2023', '6');");
+
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Chese', '12', '8.99', '12/15/2023', '12/03/2023', '4');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Balogna', '1', '35.50', '12/8/2023', '12/03/2023', '5');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Suspicious soup', '20', '16', '12/04/2023', '12/03/2023', '6');");
 
             db.close();
 
