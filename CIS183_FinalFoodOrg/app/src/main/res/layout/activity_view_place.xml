@@ -12,33 +12,35 @@
         android:id="@+id/tv_v_viewPlace_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="22dp"
+        android:fontFamily="@font/porter_sans_inline_block"
         android:text="Place Name Here"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ListView
-        android:layout_width="410dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_v_viewPlace_editPlace"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/lv_v_viewPlace_listOfItems"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/lv_v_viewPlace_listOfItems"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="82dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_viewPlace_editPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_v_viewPlace_place" />
 
     <ImageView
         android:id="@+id/btn_v_viewPlace_editPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="11dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_v_viewPlace_list"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_v_viewPlace_remove"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic"
+        app:layout_constraintTop_toBottomOf="@+id/lv_v_viewPlace_listOfItems"
         app:srcCompat="@drawable/editplace" />
 
     <ImageView
@@ -47,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_v_viewPlace_home"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,13 +60,25 @@
         android:id="@+id/btn_v_viewPlace_home"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_v_viewPlace_list"
         app:layout_constraintTop_toBottomOf="@+id/btn_v_viewPlace_editPlace"
         app:srcCompat="@drawable/home" />
+
+    <ImageView
+        android:id="@+id/btn_v_viewPlace_remove"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_viewPlace_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_viewPlace_editPlace"
+        app:layout_constraintTop_toTopOf="@+id/btn_v_viewPlace_editPlace"
+        app:srcCompat="@drawable/removeplace" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

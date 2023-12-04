@@ -60,7 +60,7 @@ public class TotalList extends AppCompatActivity {
         btn_j_totalList_sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
     }

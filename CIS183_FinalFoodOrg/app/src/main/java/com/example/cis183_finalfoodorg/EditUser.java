@@ -31,6 +31,7 @@ public class EditUser extends AppCompatActivity {
         et_j_editUserPage_password = findViewById(R.id.et_v_editUserPage_password);
 
         HomePage = new Intent(EditUser.this, HomePage.class);
+        MainActivity = new Intent(EditUser.this, MainActivity.class);
 
         ButtonEventHandler();
 
