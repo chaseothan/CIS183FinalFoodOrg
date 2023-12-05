@@ -7,7 +7,7 @@ public class Item
 
     //  class used for transporting and storing items across intents, shouldn't need itemId, that's for the database helper
     //private int itemId;
-    private String Product;
+    private String product;
     private int amount;
     private double cost;
     private String expdate;
@@ -25,7 +25,7 @@ public class Item
     {
 
         //itemId = id;
-        Product = p;
+        product = p;
         amount = a;
         cost = c;
         expdate = ex;
@@ -37,7 +37,7 @@ public class Item
 
 
     public void setProduct(String p) {
-        Product = p;
+        product = p;
     }
 
     public void setAmount(int a) {
@@ -63,7 +63,7 @@ public class Item
     //  ======================================================
 
     public String getProduct() {
-        return Product;
+        return product;
     }
 
     public int getAmount() {

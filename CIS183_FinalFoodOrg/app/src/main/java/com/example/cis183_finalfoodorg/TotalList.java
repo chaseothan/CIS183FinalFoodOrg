@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class TotalList extends AppCompatActivity {
     Intent HomePage;
@@ -18,6 +21,7 @@ public class TotalList extends AppCompatActivity {
     ImageView btn_j_totalList_place;
     ImageView btn_j_totalList_sort;
     DatabaseHelper dbHelper;
+    ArrayList<Item> itemList;
 
 
     @Override
@@ -36,8 +40,11 @@ public class TotalList extends AppCompatActivity {
         PlaceList = new Intent(TotalList.this, PlaceList.class);
 
         dbHelper = new DatabaseHelper(this);
+        itemList = new ArrayList<Item>();
+
 
         //  get all items for logged in user
+        itemList = dbHelper.getAllItems();
 
         //  check which user is signed in
 
@@ -47,6 +54,7 @@ public class TotalList extends AppCompatActivity {
 
 
         ButtonEventHandler();
+        fillTotalListView();
     }
 
     public void ButtonEventHandler()
@@ -76,4 +84,23 @@ public class TotalList extends AppCompatActivity {
             }
         });
     }
+
+
+
+    public void fillTotalListView()
+    {
+
+        //  TESTING PURPOSES
+        for (int i = 0; i < itemList.size(); i++)
+        {
+            Log.d("Item: " + i, " " + itemList.get(i).getProduct());
+
+        }
+
+
+
+
+    }
+
+
 }

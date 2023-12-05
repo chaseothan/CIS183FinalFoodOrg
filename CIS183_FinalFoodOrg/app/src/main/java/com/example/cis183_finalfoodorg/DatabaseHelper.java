@@ -1,10 +1,14 @@
 package com.example.cis183_finalfoodorg;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -189,6 +193,61 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('" + n.getProduct() + "','" + n.getAmount() + "','" + n.getCost() + "','" + n.getExpdate() + "','" + n.getPurchasedate() + "','" + n.getLocation() + "');");
 
         db.close();
+
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Item> getAllItems()
+    {
+
+        Log.d("getAllItems", "Start");
+        ArrayList<Item> itemList = new ArrayList<Item>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + ";";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Log.d("getAllItems", "Statement");
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int itemId;
+        String productName;
+        int amount;
+        double cost;
+        String expdate;
+        String purchasedate;
+        int location;
+
+
+        Log.d("getAllItems", "Move to first");
+        if (cursor.moveToFirst())
+        {
+
+            do
+            {
+//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                  productName = cursor.getString(cursor.getColumnIndex("product"));
+                  amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
+                  cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
+                  expdate = cursor.getString(cursor.getColumnIndex("expdate"));
+                  purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
+                  location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+//
+                  itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location));
+                //Log.d("getAllItems", " piece = " + location);
+            }
+            while (cursor.moveToNext());
+
+
+        }
+
+        db.close();
+
+        Log.d("getAllItems", "Return");
+        return itemList;
+
+
+
 
     }
 
