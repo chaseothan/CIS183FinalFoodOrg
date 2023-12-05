@@ -31,10 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("Main", "First");
         dbHelper = new DatabaseHelper(this);
-
-        Log.d("Main", "Initialize all tables");
         dbHelper.initializeAllTables();
 
         Log.d("USERS Count: ", dbHelper.totalNumberEntries("Users") + "");

@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public DatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME , null, 7);
+        super(context, DATABASE_NAME , null, 8);
     }
 
 
@@ -26,8 +26,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
         Log.d("onCreate", "Start");
-        db.execSQL("Create table if not exists " + TABLE_USERS + " (userId integer primary key autoincrement not null, username varchar (255), password varchar (255));");
-        db.execSQL("Create table if not exists " + TABLE_PLACES + " (placeId integer primary key autoincrement not null,placename varchar (255), userId integer, foreign key (userId) references users (userId));");
+        db.execSQL("Create table if not exists " + TABLE_USERS + " (username varchar (255) primary key not null, password varchar (255));");
+        db.execSQL("Create table if not exists " + TABLE_PLACES + " (placeId integer primary key autoincrement not null,placename varchar (255), username varchar (255), foreign key (username) references users (username));");
         db.execSQL("Create table if not exists " + TABLE_ITEMS + " (itemId integer primary key autoincrement not null,product varchar (255),amount varchar (255),cost varchar (255), expdate varchar (255), purchasedate varchar(255), placeId integer, foreign key (placeId) references places (placeId));");
         Log.d("onCreate", "End");
 
@@ -101,14 +101,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
             //  placename
             //  userId
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Cabnet', '1');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Cabnet', '1');");
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Fridge', '2');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Freezer', '2');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Fridge', '2');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Freezer', '2');");
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Cabnet', '3');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Fridge', '3');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, userId) VALUES ('Freezer', '3');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Cabnet', '3');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Fridge', '3');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Freezer', '3');");
 
             db.close();
 
@@ -139,7 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             //  placeId
 
 
-            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
+            //db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
             db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Bacon', '6', '12.99', '12/05/2023', '11/20/2023', '2');");
             db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Mayo', '1', '4.99', '3/19/2024', '12/03/2023', '3');");
 
@@ -173,6 +173,22 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         return numRows;
 
+
+    }
+
+
+    public void addNewItem(Item n)
+    {
+        Log.d("Database Helper", "Start of Add Item");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+
+        //  db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
+
+        db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('" + n.getProduct() + "','" + n.getAmount() + "','" + n.getCost() + "','" + n.getExpdate() + "','" + n.getPurchasedate() + "','" + n.getLocation() + "');");
+
+        db.close();
 
     }
 

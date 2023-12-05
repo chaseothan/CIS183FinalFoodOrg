@@ -17,6 +17,7 @@ public class TotalList extends AppCompatActivity {
     ImageView btn_j_totalList_home;
     ImageView btn_j_totalList_place;
     ImageView btn_j_totalList_sort;
+    DatabaseHelper dbHelper;
 
 
     @Override
@@ -33,6 +34,17 @@ public class TotalList extends AppCompatActivity {
         Use = new Intent(TotalList.this, Use.class);
         HomePage = new Intent(TotalList.this, HomePage.class);
         PlaceList = new Intent(TotalList.this, PlaceList.class);
+
+        dbHelper = new DatabaseHelper(this);
+
+        //  get all items for logged in user
+
+        //  check which user is signed in
+
+        //  get all items for said user in Item.java list
+
+        //  call "fillListView()" which will instate the listview with the list's items
+
 
         ButtonEventHandler();
     }

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +21,8 @@ public class AddItem extends AppCompatActivity {
     ImageView btn_j_addItem_home;
     ImageView  btn_j_addItem_add;
     Intent HomePageIntent;
+
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class AddItem extends AppCompatActivity {
 
         HomePageIntent = new Intent(AddItem.this, HomePage.class);
 
+        dbHelper = new DatabaseHelper(this);
+
         ButtonEventHandler();
 
     }
@@ -45,6 +51,14 @@ public class AddItem extends AppCompatActivity {
         btn_j_addItem_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("Button Click", "pre item grab");
+                Item newItem = new Item(et_j_addItem_product.getText().toString(), Integer.parseInt(et_j_addItem_amount.getText().toString()), Double.parseDouble(et_j_addItem_cost.getText().toString()), et_j_addItem_expDate.getText().toString(), et_j_addItem_purchaseDate.getText().toString(), Integer.parseInt(et_j_addItem_location.getText().toString()));
+
+                Log.d("Button Click", "post item grab");
+                dbHelper.addNewItem(newItem);
+
+
                 startActivity(HomePageIntent);
             }
         });
