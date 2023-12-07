@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class PlaceList extends AppCompatActivity {
     Intent totalList;
     Intent addPlace;
@@ -16,6 +18,8 @@ public class PlaceList extends AppCompatActivity {
     ImageView btn_j_placeList_home;
     ImageView btn_j_placeList_totalList;
     ImageView btn_j_placeList_addPlace;
+    PlaceListAdapter adapter;
+    ArrayList<Place> placeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,10 @@ public class PlaceList extends AppCompatActivity {
         addPlace = new Intent(PlaceList.this, AddPlace.class);
         HomePage = new Intent(PlaceList.this, HomePage.class);
 
+        placeList = new ArrayList<Place>();
+
         ButtonEventHandler();
+        fillListView();
     }
 
     public void ButtonEventHandler()
@@ -55,5 +62,11 @@ public class PlaceList extends AppCompatActivity {
                 startActivity(HomePage);
             }
         });
+    }
+    public void fillListView()
+    {
+        adapter = new PlaceListAdapter(this, placeList);
+        lv_j_placeList_listOfPlaces.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
