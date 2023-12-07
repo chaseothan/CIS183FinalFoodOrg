@@ -12,7 +12,7 @@ public class Place
 
     }
 
-    public Place (String u, String p)
+    public Place (String p, String u)
     {
         username = u;
         place = p;
