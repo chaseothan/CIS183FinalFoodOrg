@@ -9,12 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 public class AddItem extends AppCompatActivity {
 
     EditText et_j_addItem_product;
     EditText et_j_addItem_amount;
-    EditText et_j_addItem_location;
+    Spinner et_j_addItem_location;
     EditText et_j_addItem_cost;
     EditText et_j_addItem_expDate;
     EditText et_j_addItem_purchaseDate;
@@ -34,7 +35,7 @@ public class AddItem extends AppCompatActivity {
 
         et_j_addItem_product = findViewById(R.id.et_v_addItem_product);
         et_j_addItem_amount = findViewById(R.id.et_v_addItem_amount);
-        et_j_addItem_location = findViewById(R.id.et_v_addItem_location);
+        et_j_addItem_location =(Spinner) findViewById(R.id.mtdvaeI_tino_dcoadd_l);
         et_j_addItem_cost = findViewById(R.id.et_v_addItem_cost);
         et_j_addItem_expDate = findViewById(R.id.et_v_addItem_expDate);
         et_j_addItem_purchaseDate = findViewById(R.id.et_v_addItem_purchaseDate);
@@ -53,10 +54,10 @@ public class AddItem extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.d("Button Click", "pre item grab");
-                Item newItem = new Item(et_j_addItem_product.getText().toString(), Integer.parseInt(et_j_addItem_amount.getText().toString()), Double.parseDouble(et_j_addItem_cost.getText().toString()), et_j_addItem_expDate.getText().toString(), et_j_addItem_purchaseDate.getText().toString(), Integer.parseInt(et_j_addItem_location.getText().toString()));
+                //Item newItem = new Item(et_j_addItem_product.getText().toString(), Integer.parseInt(et_j_addItem_amount.getText().toString()), Double.parseDouble(et_j_addItem_cost.getText().toString()), et_j_addItem_expDate.getText().toString(), et_j_addItem_purchaseDate.getText().toString(), Integer.parseInt(et_j_addItem_location.getText().toString()));
 
                 Log.d("Button Click", "post item grab");
-                dbHelper.addNewItem(newItem);
+                //dbHelper.addNewItem(newItem);
 
 
                 startActivity(HomePageIntent);

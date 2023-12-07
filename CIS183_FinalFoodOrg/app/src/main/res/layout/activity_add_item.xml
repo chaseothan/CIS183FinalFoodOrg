@@ -10,9 +10,11 @@
     <ImageView
         android:id="@+id/imageView21"
         android:layout_width="165dp"
-        android:layout_height="83dp"
+        android:layout_height="0dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="194dp"
+        app:layout_constraintBottom_toTopOf="@+id/dd_v_addItem_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add" />
@@ -59,26 +61,16 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView21" />
 
     <EditText
-        android:id="@+id/et_v_addItem_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_amount" />
-
-    <EditText
         android:id="@+id/et_v_addItem_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="316dp"
         android:ems="10"
         android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_location" />
+        app:layout_constraintTop_toBottomOf="@+id/dd_v_addItem_location" />
 
     <EditText
         android:id="@+id/et_v_addItem_expDate"
@@ -112,5 +104,12 @@
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_product" />
+
+    <Spinner
+        android:id="@+id/mtdvaeI_tino_dcoadd_l"
+        android:layout_width="185dp"
+        android:layout_height="67dp"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="273dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
