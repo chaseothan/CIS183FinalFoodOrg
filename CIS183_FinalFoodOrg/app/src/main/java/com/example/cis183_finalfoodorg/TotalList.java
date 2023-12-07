@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -22,6 +23,7 @@ public class TotalList extends AppCompatActivity {
     ImageView btn_j_totalList_sort;
     DatabaseHelper dbHelper;
     ArrayList<Item> itemList;
+    TotalListAdapter adapter;
 
 
     @Override
@@ -55,6 +57,8 @@ public class TotalList extends AppCompatActivity {
 
         ButtonEventHandler();
         fillTotalListView();
+
+
     }
 
     public void ButtonEventHandler()
@@ -90,10 +94,15 @@ public class TotalList extends AppCompatActivity {
     public void fillTotalListView()
     {
 
+        adapter = new TotalListAdapter(this, itemList);
+        lv_j_totalList_listOfItems.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         //  TESTING PURPOSES
         for (int i = 0; i < itemList.size(); i++)
         {
-            Log.d("Item: " + i, " " + itemList.get(i).getProduct());
+            //Log.d("Item: " + i, " " + itemList.get(i).getProduct());
+
+
 
         }
 

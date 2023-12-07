@@ -18,7 +18,6 @@ public class Item
     public Item()
     {
 
-
     }
 
     public Item(String p, int a, double c, String ex, String pd, int l)
