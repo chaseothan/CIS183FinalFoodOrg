@@ -145,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             //  placeId
 
 
-            //db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
+            db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
             db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Bacon', '6', '12.99', '12/05/2023', '11/20/2023', '2');");
             db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Mayo', '1', '4.99', '3/19/2024', '12/03/2023', '3');");
 
@@ -384,7 +384,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         ArrayList<Place> listOfPlaces = new ArrayList<Place>();
 
-        String selectQuery = "SELECT placename FROM " + TABLE_PLACES + ";";
+        String selectQuery = "SELECT * FROM " + TABLE_PLACES + ";";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -398,6 +398,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             do {
 
+                Log.d("enter do", "exit do");
                 placename = cursor.getString(cursor.getColumnIndex("placename"));
                 username = cursor.getString(cursor.getColumnIndex("username"));
 
@@ -408,6 +409,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
         return listOfPlaces;
+    }
+    public void addNewPlace(String p, String u)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('" + p + "','" + u + "')");
+
+        db.close();
+
     }
 
 

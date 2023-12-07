@@ -14,6 +14,7 @@ public class AddPlace extends AppCompatActivity {
     EditText et_j_addPlace_place;
     ImageView btn_j_addPlace_addPlace;
     ImageView btn_j_addPlace_home;
+    DatabaseHelper dbHelper;
 
 
     @Override
@@ -29,6 +30,10 @@ public class AddPlace extends AppCompatActivity {
         PlaceList = new Intent(AddPlace.this, TotalList.class);
         HomePage = new Intent(AddPlace.this, HomePage.class);
 
+        dbHelper = new DatabaseHelper(this);
+
+
+
         ButtonEventHandler();
     }
     public void ButtonEventHandler()
@@ -37,7 +42,9 @@ public class AddPlace extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(PlaceList);
+                dbHelper.addNewPlace(et_j_addPlace_place.getText().toString(), AppData.getUsername());
             }
+
         });
         btn_j_addPlace_home.setOnClickListener(new View.OnClickListener() {
             @Override

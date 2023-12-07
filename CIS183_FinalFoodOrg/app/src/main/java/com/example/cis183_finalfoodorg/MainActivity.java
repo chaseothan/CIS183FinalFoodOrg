@@ -83,10 +83,12 @@ public class MainActivity extends AppCompatActivity {
 
                         //  correct username and password
                         //  procceed to next page
+                        AppData.setUsername(et_j_main_username.getText().toString());
 
                         //  static class for logged in user
                         Log.d("check","match");
                         startActivity(HomePageintent);
+
                     }
                     else
                     {
