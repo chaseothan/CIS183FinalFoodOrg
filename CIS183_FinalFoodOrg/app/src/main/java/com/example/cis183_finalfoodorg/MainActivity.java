@@ -75,14 +75,57 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //later in the if statement check if the user name and password are valid
-                if (true)
+
+                if (checkUsernameAndPasswordNotNull())
+                {
+                    if (dbHelper.correctUserNameAndPassword(et_j_main_username.getText().toString(), et_j_main_password.getText().toString()))
                     {
-                        Log.d("did","click");
-                    startActivity(HomePageintent);
+
+                        //  correct username and password
+                        //  procceed to next page
+
+                        //  static class for logged in user
+                        Log.d("check","match");
+                        startActivity(HomePageintent);
                     }
+                    else
+                    {
+
+                        //  either one is incorrect, you don't need to know
+                        //  display an error
+                        Log.d("On click else", "either incorrect");
+
+
+                    }
+
+                }
+                else
+                {
+                    //  did not
+                    Log.d("On click else", "null");
+
+                }
+
+
             }
         });
+
+    }
+
+    public boolean checkUsernameAndPasswordNotNull()
+    {
+
+        if (et_j_main_username.getText().toString() != "" && et_j_main_password.getText().toString() != "")
+        {
+            //  not null
+            return true;
+        }
+        else
+        {
+            //  is null
+            return false;
+        }
+
 
     }
 

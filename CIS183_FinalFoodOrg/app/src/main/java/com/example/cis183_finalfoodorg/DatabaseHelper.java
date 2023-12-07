@@ -226,6 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean checkIfUsernameExists(String username)
     {
 
+        Log.d("check username exists", "start");
         SQLiteDatabase db = getReadableDatabase();
 
         String checkUsername = "SELECT count(username) FROM " + TABLE_USERS + " WHERE username = '" + username + "';";
@@ -238,12 +239,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
 
-        if (count == 1)
+        Log.d("check username exists", "end");
+        if (count != 0)
         {
+            Log.d("Return ", "true");
             return true;
         }
         else
         {
+            Log.d("Return ", "False");
             return  false;
         }
 
@@ -253,8 +257,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean correctUserNameAndPassword(String username, String password)
     {
 
+        Log.d("correct name combo", "start");
         if (checkIfUsernameExists(username))
         {
+            Log.d("check username exists", "returned true");
             String getUserInfo = "SELECT password from " + TABLE_USERS + " WHERE username = '" + username + "';";
 
             SQLiteDatabase db = this.getReadableDatabase();
@@ -265,26 +271,38 @@ public class DatabaseHelper extends SQLiteOpenHelper
             {
                 cursor.moveToFirst();
 
-                if (password == cursor.getString(0).toString())
+                if (password.equals(cursor.getString(0).toString()))
                 {
 
+                    Log.d("check password", "good");
                     //  correct username and password, log in
+
+                    db.close();
                     return true;
 
                 }
                 else
                 {
+                    Log.d("check password", "bad");
                     //  correct username, but incorrect password
+                    db.close();
                     return false;
                 }
 
 
             }
+            else
+            {
+                //  incorrect username
+                Log.d("No username", "None found");
+                db.close();
+            }
+
 
 
         }
 
-
+        Log.d("end", "return false next");
         return false;
 
 
