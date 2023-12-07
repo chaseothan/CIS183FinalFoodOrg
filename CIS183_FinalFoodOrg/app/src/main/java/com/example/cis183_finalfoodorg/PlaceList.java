@@ -20,11 +20,15 @@ public class PlaceList extends AppCompatActivity {
     ImageView btn_j_placeList_addPlace;
     PlaceListAdapter adapter;
     ArrayList<Place> placeList;
+    DatabaseHelper dbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_list);
+
+        dbHelper = new DatabaseHelper(this);
 
         btn_j_placeList_totalList = (ImageView) findViewById(R.id.btn_v_placeList_list);
         btn_j_placeList_addPlace = (ImageView) findViewById(R.id.btn_v_placeList_addPlace);
@@ -38,8 +42,11 @@ public class PlaceList extends AppCompatActivity {
 
         placeList = new ArrayList<Place>();
 
+        placeList = dbHelper.getAllPlaces();
+
         ButtonEventHandler();
         fillListView();
+
     }
 
     public void ButtonEventHandler()

@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.util.stream.Stream;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -376,6 +378,36 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
 
+    }
+    @SuppressLint("Range")
+    public ArrayList<Place> getAllPlaces()
+    {
+        ArrayList<Place> listOfPlaces = new ArrayList<Place>();
+
+        String selectQuery = "SELECT placename FROM " + TABLE_PLACES + ";";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        String placename;
+
+        String username;
+
+        if (cursor.moveToFirst())
+        {
+            do {
+
+                placename = cursor.getString(cursor.getColumnIndex("placename"));
+                username = cursor.getString(cursor.getColumnIndex("username"));
+
+                listOfPlaces.add(new Place(placename, username));
+            }
+            while (cursor.moveToNext());
+        }
+
+        db.close();
+        return listOfPlaces;
     }
 
 
