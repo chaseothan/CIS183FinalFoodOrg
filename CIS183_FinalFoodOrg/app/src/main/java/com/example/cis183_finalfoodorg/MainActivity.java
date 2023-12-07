@@ -18,9 +18,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView btn_j_main_addNewUser;
     EditText et_j_main_username;
     EditText et_j_main_password;
-
     DatabaseHelper dbHelper;
-
     Intent HomePageintent;
     Intent NewUserPageIntent;
 
@@ -57,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         //PlaceListIntent = new Intent(MainActivity.this, PlaceList.class);
 
         ButtonClickEventHandler();
+        dbHelper.getAllUsernames();
+
     }
 
     public void ButtonClickEventHandler()

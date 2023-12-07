@@ -181,6 +181,58 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
 
+    public void addNewUser(String u, String p)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //  check if the username is unique first
+
+        db.execSQL("INSERT INTO " + TABLE_USERS + " VALUES ('" + u + "','" + p + "')");
+
+        db.close();
+
+    }
+
+    @SuppressLint("Range")
+    public void getAllUsernames()
+    {
+
+        //  string array
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT username FROM " + TABLE_USERS + ";";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst())
+        {
+
+            do
+            {
+                Log.d("Username: ", "" + cursor.getString(cursor.getColumnIndex("username")));
+            }
+            while (cursor.moveToNext());
+
+
+
+        }
+
+        db.close();
+
+    }
+
+    public void checkIfUsernameExists(String username)
+    {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        //String checkUsername = "SELECT "
+
+    }
+
+
     public void addNewItem(Item n)
     {
         Log.d("Database Helper", "Start of Add Item");
