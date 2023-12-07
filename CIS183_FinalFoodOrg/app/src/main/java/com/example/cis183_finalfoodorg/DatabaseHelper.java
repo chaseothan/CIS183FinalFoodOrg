@@ -223,15 +223,72 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
-    public void checkIfUsernameExists(String username)
+    public boolean checkIfUsernameExists(String username)
     {
 
         SQLiteDatabase db = getReadableDatabase();
 
-        //String checkUsername = "SELECT "
+        String checkUsername = "SELECT count(username) FROM " + TABLE_USERS + " WHERE username = '" + username + "';";
+
+        Cursor cursor = db.rawQuery(checkUsername, null);
+
+        cursor.moveToFirst();
+
+        int count = cursor.getInt(0);
+
+        db.close();
+
+        if (count == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return  false;
+        }
 
     }
 
+
+    public boolean correctUserNameAndPassword(String username, String password)
+    {
+
+        if (checkIfUsernameExists(username))
+        {
+            String getUserInfo = "SELECT password from " + TABLE_USERS + " WHERE username = '" + username + "';";
+
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.rawQuery(getUserInfo, null);
+
+            if (cursor != null)
+            {
+                cursor.moveToFirst();
+
+                if (password == cursor.getString(0).toString())
+                {
+
+                    //  correct username and password, log in
+                    return true;
+
+                }
+                else
+                {
+                    //  correct username, but incorrect password
+                    return false;
+                }
+
+
+            }
+
+
+        }
+
+
+        return false;
+
+
+    }
 
     public void addNewItem(Item n)
     {
