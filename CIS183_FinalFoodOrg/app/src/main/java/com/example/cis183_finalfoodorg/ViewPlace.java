@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class ViewPlace extends AppCompatActivity {
     Intent PlaceList;
@@ -20,15 +23,42 @@ public class ViewPlace extends AppCompatActivity {
     ImageView btn_j_viewPlace_home;
     ImageView btn_j_viewPlace_list;
     ImageView btn_j_viewPlace_editPlace;
+    Place placePassed;
+    DatabaseHelper dbHelper;
+    TotalListAdapter adapter;
+    ArrayList<Item> placeListOfItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_place);
+
+
+
         btn_j_viewPlace_remove = (ImageView) findViewById(R.id.btn_v_viewPlace_remove);
         btn_j_viewPlace_editPlace = (ImageView) findViewById(R.id.btn_v_viewPlace_editPlace);
         btn_j_viewPlace_list = (ImageView) findViewById(R.id.btn_v_viewPlace_list);
         btn_j_viewPlace_home = (ImageView) findViewById(R.id.btn_v_viewPlace_home);
+
+        Intent cameFrom = getIntent();
+
+
+        placePassed = (Place) cameFrom.getSerializableExtra("Place");
+        Log.d("ViewPlace", "extras");
+        //  find all records based on the placeId
+        //  and fill PlaceListOfItems
+        placeListOfItems = new ArrayList<Item>();
+        Log.d("ViewPlace", "item");
+
+        dbHelper = new DatabaseHelper(this);
+        Log.d("ViewPlace", "db");
+        int id = placePassed.getPlaceId();
+        Log.d("ViewPlace", "Id");
+        Log.d("Id = ", id + " ");
+
+        Log.d("ViewPlace", "Get all items by place");
+        placeListOfItems = dbHelper.getAllItemsByPlace(id);
+        Log.d("ViewPlace", "Did it ^");
 
         lv_j_viewPlace_listOfItems = findViewById(R.id.lv_v_viewPlace_listOfItems);
 
@@ -40,6 +70,7 @@ public class ViewPlace extends AppCompatActivity {
         HomePage = new Intent(ViewPlace.this, HomePage.class);
 
         ButtonEventHandler();
+        fillListView();
 
     }
     public void ButtonEventHandler()
@@ -69,4 +100,14 @@ public class ViewPlace extends AppCompatActivity {
             }
         });
     }
+
+    public void fillListView()
+    {
+
+        Log.d("getAllItems", "Return");
+        adapter = new TotalListAdapter(this, placeListOfItems);
+        lv_j_viewPlace_listOfItems.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
 }

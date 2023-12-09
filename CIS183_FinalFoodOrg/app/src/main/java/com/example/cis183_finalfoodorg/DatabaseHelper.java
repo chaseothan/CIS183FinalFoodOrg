@@ -327,13 +327,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     @SuppressLint("Range")
-    public ArrayList<Item> getAllItems()
+    public ArrayList<Item> getAllItemsByPlace(int id)
     {
 
         Log.d("getAllItems", "Start");
         ArrayList<Item> itemList = new ArrayList<Item>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + ";";
+        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + " WHERE placeId = '" + id + "';";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -380,6 +380,61 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
     }
+
+    @SuppressLint("Range")
+    public ArrayList<Item> getAllItems()
+    {
+
+        Log.d("getAllItems", "Start");
+        ArrayList<Item> itemList = new ArrayList<Item>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + ";";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Log.d("getAllItems", "Statement");
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int itemId;
+        String productName;
+        int amount;
+        double cost;
+        String expdate;
+        String purchasedate;
+        int location;
+
+
+        Log.d("getAllItems", "Move to first");
+        if (cursor.moveToFirst())
+        {
+
+            do
+            {
+//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                productName = cursor.getString(cursor.getColumnIndex("product"));
+                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
+                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
+                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
+                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
+                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+//
+                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location));
+                //Log.d("getAllItems", " piece = " + location);
+            }
+            while (cursor.moveToNext());
+
+
+        }
+
+        db.close();
+
+        Log.d("getAllItems", "Return");
+        return itemList;
+
+
+
+
+    }
     @SuppressLint("Range")
     public ArrayList<Place> getAllPlaces()
     {
@@ -400,24 +455,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             do {
 
-                Log.d("getAllPlaces", "start do");
+                //Log.d("getAllPlaces", "start do");
                 placename = cursor.getString(cursor.getColumnIndex("placename"));
                 username = cursor.getString(cursor.getColumnIndex("username"));
 
 
 
                 placeId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
-                Log.d("getAllPlaces", "placeId = " + placeId);
+                //.d("getAllPlaces", "placeId = " + placeId);
 
 
                 listOfPlaces.add(new Place(placename, username, placeId));
-                Log.d("getAllPlaces", "post .add");
+                //Log.d("getAllPlaces", "post .add");
             }
             while (cursor.moveToNext());
             Log.d("getAllPlaces", "end of loop");
         }
 
+
+
         db.close();
+        Log.d("listOfPlaces", "Return");
         return listOfPlaces;
     }
     public void addNewPlace(String p, String u)

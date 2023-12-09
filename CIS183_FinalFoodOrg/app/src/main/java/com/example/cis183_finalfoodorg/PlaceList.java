@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -14,6 +16,7 @@ public class PlaceList extends AppCompatActivity {
     Intent totalList;
     Intent addPlace;
     Intent HomePage;
+    Intent viewPlace;
     ListView lv_j_placeList_listOfPlaces;
     ImageView btn_j_placeList_home;
     ImageView btn_j_placeList_totalList;
@@ -39,10 +42,12 @@ public class PlaceList extends AppCompatActivity {
         totalList = new Intent(PlaceList.this, TotalList.class);
         addPlace = new Intent(PlaceList.this, AddPlace.class);
         HomePage = new Intent(PlaceList.this, HomePage.class);
+        viewPlace = new Intent(PlaceList.this, ViewPlace.class);
 
         placeList = new ArrayList<Place>();
 
         placeList = dbHelper.getAllPlaces();
+        Log.d("PlaceList", "got all places");
 
         ButtonEventHandler();
         fillListView();
@@ -69,11 +74,28 @@ public class PlaceList extends AppCompatActivity {
                 startActivity(HomePage);
             }
         });
+
+        lv_j_placeList_listOfPlaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id)
+            {
+                //  put extra
+                Log.d("Put Extra", "Put extra");
+                viewPlace.putExtra("Place", placeList.get(i));
+
+                Log.d("Go to next activity", "View Place");
+                startActivity(viewPlace);
+
+
+            }
+        });
     }
     public void fillListView()
     {
+
         adapter = new PlaceListAdapter(this, placeList);
         lv_j_placeList_listOfPlaces.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        Log.d("PlaceList", "Filled List View");
     }
 }

@@ -44,12 +44,10 @@ public class PlaceListAdapter extends BaseAdapter
 
         }
         TextView tv_j_customCell_placeList_place = view.findViewById(R.id.tv_v_customcell_placeList_place);
-        //TextView tv_j_customCell_placeList_id = view.findViewById(R.id.tv_v_customcell_placeList_Id);
         Place place = listOfPlaces.get(i);
         tv_j_customCell_placeList_place.setText(place.getPlace());
 
-        //Log.d("place list adapter", "getplaceId");
-        //tv_j_customCell_placeList_id.setText(Integer.toString(place.getPlaceId()));
+
 
         return view;
 
