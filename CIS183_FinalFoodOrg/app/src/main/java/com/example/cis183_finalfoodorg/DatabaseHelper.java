@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public DatabaseHelper(Context context)
     {
-        super(context, DATABASE_NAME , null, 8);
+        super(context, DATABASE_NAME , null, 10);
     }
 
 
@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         if (totalNumberEntries(TABLE_USERS) == 0)
         {
             Log.d("init Users", "Get readable");
-            SQLiteDatabase db = this.getReadableDatabase();
+            SQLiteDatabase db = this.getWritableDatabase();
 
             //  userId
             //  username
@@ -82,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('zmoore', 'coolpass12');");
             db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('sthomas', 'beanSoup7');");
             db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('dwaneJson', 'theRockDudes');");
+            db.execSQL("INSERT INTO " + TABLE_USERS + "  (username, password) VALUES ('Pinokio', 'yolo39');");
 
             db.close();
 
@@ -101,20 +102,20 @@ public class DatabaseHelper extends SQLiteOpenHelper
         if (totalNumberEntries(TABLE_PLACES) == 0)
         {
             Log.d("init Places", "Get readable");
-            SQLiteDatabase db = this.getReadableDatabase();
+            SQLiteDatabase db = this.getWritableDatabase();
 
             //  placeId
             //  placename
             //  userId
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Cabnet', '1');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Cabnet', 'zmoore');");
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Fridge', '2');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Freezer', '2');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Fridge', 'sthomas');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Freezer', 'sthomas');");
 
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Cabnet', '3');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Fridge', '3');");
-            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Freezer', '3');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Cabnet', 'dwaneJson');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Fridge', 'Pinokio');");
+            db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('Freezer', 'Pinokio');");
 
             db.close();
 
@@ -134,7 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         if (totalNumberEntries(TABLE_ITEMS) == 0)
         {
             Log.d("init Items", "Get readable");
-            SQLiteDatabase db = this.getReadableDatabase();
+            SQLiteDatabase db = this.getWritableDatabase();
 
             //  itemId
             //  product
@@ -393,18 +394,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String placename;
 
         String username;
+        int placeId;
 
         if (cursor.moveToFirst())
         {
             do {
 
-                Log.d("enter do", "exit do");
+                Log.d("getAllPlaces", "start do");
                 placename = cursor.getString(cursor.getColumnIndex("placename"));
                 username = cursor.getString(cursor.getColumnIndex("username"));
 
-                listOfPlaces.add(new Place(placename, username));
+
+
+                placeId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+                Log.d("getAllPlaces", "placeId = " + placeId);
+
+
+                listOfPlaces.add(new Place(placename, username, placeId));
+                Log.d("getAllPlaces", "post .add");
             }
             while (cursor.moveToNext());
+            Log.d("getAllPlaces", "end of loop");
         }
 
         db.close();

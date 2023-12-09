@@ -6,16 +6,18 @@ public class Place
 
     private String username;
     private String place;
+    private int placeId;
 
     public Place()
     {
 
     }
 
-    public Place (String p, String u)
+    public Place (String p, String u, int id)
     {
         username = u;
         place = p;
+        placeId = id;
 
     }
 
@@ -33,6 +35,11 @@ public class Place
 
     public void setPlace(String p) {
         place = p;
+    }
+
+    public int getPlaceId()
+    {
+        return placeId;
     }
 
     //username string

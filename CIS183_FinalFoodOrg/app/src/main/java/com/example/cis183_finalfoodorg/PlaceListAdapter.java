@@ -3,6 +3,7 @@ package com.example.cis183_finalfoodorg;
 import android.app.Activity;
 import android.content.Context;
 import android.icu.number.CompactNotation;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,15 +39,19 @@ public class PlaceListAdapter extends BaseAdapter
     @Override
     public View getView(int i, View view, ViewGroup parent) {
         if (view == null) {
-            LayoutInflater minflator = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = minflator.inflate(R.layout.custom_place_list_cell, null);
+            LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            view = mInflater.inflate(R.layout.custom_place_list_cell, null);
 
         }
         TextView tv_j_customCell_placeList_place = view.findViewById(R.id.tv_v_customcell_placeList_place);
+        //TextView tv_j_customCell_placeList_id = view.findViewById(R.id.tv_v_customcell_placeList_Id);
         Place place = listOfPlaces.get(i);
         tv_j_customCell_placeList_place.setText(place.getPlace());
 
-            return view;
+        //Log.d("place list adapter", "getplaceId");
+        //tv_j_customCell_placeList_id.setText(Integer.toString(place.getPlaceId()));
+
+        return view;
 
     }
 }
