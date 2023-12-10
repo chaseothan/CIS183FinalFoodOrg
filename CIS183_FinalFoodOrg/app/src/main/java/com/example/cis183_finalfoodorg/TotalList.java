@@ -27,6 +27,7 @@ public class TotalList extends AppCompatActivity {
     TotalListAdapter adapter;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +44,14 @@ public class TotalList extends AppCompatActivity {
         PlaceList = new Intent(TotalList.this, PlaceList.class);
         Sort = new Intent(TotalList.this, SortPage.class);
 
+        //Intent cameFrom = getIntent();
+
+
+        //placePassed = (Place) cameFrom.getSerializableExtra("Place");
+
         dbHelper = new DatabaseHelper(this);
         itemList = new ArrayList<Item>();
+
 
 
         //  get all items for logged in user

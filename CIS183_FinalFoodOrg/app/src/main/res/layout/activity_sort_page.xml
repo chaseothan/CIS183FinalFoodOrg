@@ -8,7 +8,7 @@
     tools:context=".SortPage">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/btn_v_sortPage_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
@@ -18,36 +18,36 @@
         app:srcCompat="@drawable/blankbutton" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/btn_v_sortPage_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/btn_v_sortPage_name"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_sortPage_name"
         app:srcCompat="@drawable/blankbutton" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/btn_v_sortPage_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/btn_v_sortPage_amount"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_sortPage_amount"
         app:srcCompat="@drawable/blankbutton" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/btn_v_sortPage_expdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="132dp"
         android:layout_marginBottom="130dp"
-        app:layout_constraintBottom_toBottomOf="@+id/switch1"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintBottom_toBottomOf="@+id/sw_v_sortPage_switch"
+        app:layout_constraintStart_toStartOf="@+id/btn_v_sortPage_cost"
         app:layout_constraintTop_toTopOf="@+id/tv_v_sortPage_cost"
         app:srcCompat="@drawable/blankbutton" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/sw_v_sortPage_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
@@ -67,7 +67,7 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintTop_toTopOf="@+id/btn_v_sortPage_name" />
 
     <TextView
         android:id="@+id/tv_v_sortPage_expDate"
@@ -77,7 +77,7 @@
         android:fontFamily="@font/porter_sans_inline_block"
         android:text="Experation      Date:"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_v_sortPage_expdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent" />
@@ -92,7 +92,7 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+        app:layout_constraintTop_toTopOf="@+id/btn_v_sortPage_cost" />
 
     <TextView
         android:id="@+id/tv_v_sortPage_amount"
@@ -102,7 +102,7 @@
         android:fontFamily="@font/porter_sans_inline_block"
         android:text="Amount"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_v_sortPage_amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -115,8 +115,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintStart_toEndOf="@+id/sw_v_sortPage_switch"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_sortPage_expdate"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/listbtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -502,4 +502,60 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
 
+    //  ==============================================================================================
+
+    @SuppressLint("Range")
+    public ArrayList<Item> sortAllItemsBy(String sortBy)
+    {
+
+        Log.d("getAllItemsBy", "Start");
+        ArrayList<Item> itemList = new ArrayList<Item>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " INNER JOIN " + TABLE_PLACES + " ON " + TABLE_PLACES + ".username = " + TABLE_USERS + ".username " + "INNER JOIN " + TABLE_ITEMS + " ON " + TABLE_PLACES + ".placeId = " + TABLE_ITEMS + ".placeId WHERE " + TABLE_USERS + ".username = '" +  AppData.getUsername() + "' ORDER BY " + sortBy + ";";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Log.d("getAllItems", "Statement");
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int itemId;
+        String productName;
+        int amount;
+        double cost;
+        String expdate;
+        String purchasedate;
+        int location;
+
+
+        Log.d("getAllItems", "Move to first");
+        if (cursor.moveToFirst())
+        {
+
+            do
+            {
+//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                productName = cursor.getString(cursor.getColumnIndex("product"));
+                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
+                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
+                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
+                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
+                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+//
+                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
+                //Log.d("getAllItems", " piece = " + location);
+            }
+            while (cursor.moveToNext());
+
+
+        }
+
+        db.close();
+
+        Log.d("SortAllItems", "Return");
+        return itemList;
+
+    }
+
+
 }
