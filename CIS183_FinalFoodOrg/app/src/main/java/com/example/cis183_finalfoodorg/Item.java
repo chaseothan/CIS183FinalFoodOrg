@@ -13,6 +13,9 @@ public class Item
     private String expdate;
     private String purchasedate;
     private int location;
+
+
+
     private int itemId;
 
 
@@ -84,6 +87,13 @@ public class Item
 
     public int getLocation() {
         return location;
+    }
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
 }

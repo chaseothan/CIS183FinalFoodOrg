@@ -49,7 +49,10 @@ public class ProductProfile extends AppCompatActivity {
         itemList = new ArrayList<Item>();
 
         dbHelper = new DatabaseHelper(this);
-        int id = itemPassed.getItemid
+        
+        int id = itemPassed.getItemId();
+
+
 
         ButtonEventHandler();
         //fill func for tvs
