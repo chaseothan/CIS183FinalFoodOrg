@@ -27,6 +27,8 @@ public class TotalList extends AppCompatActivity {
     ArrayList<Item> itemList;
     TotalListAdapter adapter;
     Intent productProfile;
+    String sortPassed;
+
 
 
 
@@ -47,10 +49,15 @@ public class TotalList extends AppCompatActivity {
         Sort = new Intent(TotalList.this, SortPage.class);
         productProfile = new Intent(TotalList.this, ProductProfile.class);
 
-        //Intent cameFrom = getIntent();
+        Log.d("Total List", "===========================");
+
+        Intent cameFrom = getIntent();
+
+        //  reset just for safekeeping
+        sortPassed = "";
+        sortPassed = (String) cameFrom.getStringExtra("Sort");
 
 
-        //placePassed = (Place) cameFrom.getSerializableExtra("Place");
 
         dbHelper = new DatabaseHelper(this);
         itemList = new ArrayList<Item>();
@@ -58,7 +65,17 @@ public class TotalList extends AppCompatActivity {
 
 
         //  get all items for logged in user
-        itemList = dbHelper.getAllItems();
+        if (sortPassed != "")
+        {
+            Log.d("Total List", "sort passed != ''");
+            itemList = dbHelper.sortAllItemsBy(sortPassed);
+        }
+        else
+        {
+            Log.d("Total List", "sort passed == ''");
+            itemList = dbHelper.getAllItems();
+        }
+
 
         //  check which user is signed in
 
@@ -66,6 +83,7 @@ public class TotalList extends AppCompatActivity {
 
         //  call "fillListView()" which will instate the listview with the list's items
 
+        Log.d("Total List", "===========================");
 
         ButtonEventHandler();
         fillTotalListView();
@@ -105,7 +123,6 @@ public class TotalList extends AppCompatActivity {
 
                 productProfile.putExtra("Item", itemList.get(position));
 
-                Log.d("click", "clicked");
                 startActivity(productProfile);
             }
         });
@@ -119,17 +136,6 @@ public class TotalList extends AppCompatActivity {
         adapter = new TotalListAdapter(this, itemList);
         lv_j_totalList_listOfItems.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        //  TESTING PURPOSES
-        for (int i = 0; i < itemList.size(); i++)
-        {
-            //Log.d("Item: " + i, " " + itemList.get(i).getProduct());
-
-
-
-        }
-
-
-
 
     }
 

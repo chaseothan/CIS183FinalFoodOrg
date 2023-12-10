@@ -17,11 +17,13 @@ public class HomePage extends AppCompatActivity {
     Intent EditUser;
     Intent Use;
     Intent AddItem;
+    Intent MainActivity;
     ImageView btn_j_homePage_add;
     ImageView btn_j_homePage_use;
     ImageView btn_j_homePage_editUser;
     ImageView btn_j_homePage_list;
     ImageView btn_j_homePage_place;
+    ImageView btn_j_homepage_logout;
 
 
 
@@ -35,6 +37,7 @@ public class HomePage extends AppCompatActivity {
         EditUser = new Intent(HomePage.this, EditUser.class);
         Use = new Intent(HomePage.this, Use.class);
         AddItem = new Intent(HomePage.this, AddItem.class);
+        MainActivity = new Intent(HomePage.this, MainActivity.class);
 
 
         btn_j_homePage_add = (ImageView) findViewById(R.id.btn_v_homePage_add);
@@ -42,6 +45,7 @@ public class HomePage extends AppCompatActivity {
         btn_j_homePage_editUser = (ImageView) findViewById(R.id.btn_v_homePage_editUser);
         btn_j_homePage_list = (ImageView) findViewById(R.id.btn_v_homePage_list);
         btn_j_homePage_place = (ImageView) findViewById(R.id.btn_v_homePage_place);
+        btn_j_homepage_logout = (ImageView) findViewById(R.id.btn_v_homePage_logout);
 
         ButtonClickEventHandler();
     }
@@ -76,6 +80,13 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(PlaceListIntent);
+            }
+        });
+        btn_j_homepage_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppData.setUsername("");
+                startActivity(MainActivity);
             }
         });
 
