@@ -16,6 +16,7 @@ public class TotalList extends AppCompatActivity {
     Intent HomePage;
     Intent PlaceList;
     Intent Use;
+    Intent Sort;
     ListView lv_j_totalList_listOfItems;
     ImageView btn_j_totalList_use;
     ImageView btn_j_totalList_home;
@@ -40,6 +41,7 @@ public class TotalList extends AppCompatActivity {
         Use = new Intent(TotalList.this, Use.class);
         HomePage = new Intent(TotalList.this, HomePage.class);
         PlaceList = new Intent(TotalList.this, PlaceList.class);
+        Sort = new Intent(TotalList.this, SortPage.class);
 
         dbHelper = new DatabaseHelper(this);
         itemList = new ArrayList<Item>();
@@ -83,7 +85,7 @@ public class TotalList extends AppCompatActivity {
         });
         btn_j_totalList_sort.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { startActivity(Sort);
 
             }
         });
