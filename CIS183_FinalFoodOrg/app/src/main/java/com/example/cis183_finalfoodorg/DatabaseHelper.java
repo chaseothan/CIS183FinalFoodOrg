@@ -354,7 +354,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String expdate;
         String purchasedate;
         int location;
-        int id;
 
 
         Log.d("getAllItems", "Move to first");
@@ -370,9 +369,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 expdate = cursor.getString(cursor.getColumnIndex("expdate"));
                 purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
                 location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
-                id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
 //
-                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, id));
+                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
                 //Log.d("getAllItems", " piece = " + location);
             }
             while (cursor.moveToNext());
@@ -411,7 +410,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String expdate;
         String purchasedate;
         int location;
-        int id;
 
 
         Log.d("getAllItems", "Move to first");
@@ -427,9 +425,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
                   expdate = cursor.getString(cursor.getColumnIndex("expdate"));
                   purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
                   location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
-                  id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                  itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
 //
-                  itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, id));
+                  itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
                 //Log.d("getAllItems", " piece = " + location);
             }
             while (cursor.moveToNext());
