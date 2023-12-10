@@ -61,7 +61,7 @@ public class SortPage extends AppCompatActivity {
                 //  pass totalList "username"
                 //  put extra
                 Log.d("Put Extra", "Put extra");
-                TotalList.putExtra("Sort", "username");
+                TotalList.putExtra("Sort", "product");
 
                 isDecending = s_j_sortPage_switch.isChecked();
                 TotalList.putExtra("Decending", isDecending);
