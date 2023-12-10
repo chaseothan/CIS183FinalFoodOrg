@@ -345,11 +345,38 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
     }
+    @SuppressLint("Range")
+    public String getPassword()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String password = ("SELECT password FROM " + TABLE_USERS + " WHERE username = '" + AppData.getUsername() + "';");
+
+        Cursor cursor = db.rawQuery(password, null);
+
+        if (cursor.moveToFirst())
+        {
+                password = cursor.getString(cursor.getColumnIndex("password"));
+
+        }
+
+        db.close();
+        return password;
+
+    }
     public void updatePlace(Place n)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL("UPDATE " + TABLE_PLACES + " SET placename = '" + n.getPlace() + "' WHERE placeId = '" + n.getPlaceId() + "';");
+
+        db.close();
+    }
+    public void updatePassword(String n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("UPDATE " + TABLE_USERS + " SET password = '" + n + "' WHERE username = '" + AppData.getUsername() + "';");
 
         db.close();
     }
