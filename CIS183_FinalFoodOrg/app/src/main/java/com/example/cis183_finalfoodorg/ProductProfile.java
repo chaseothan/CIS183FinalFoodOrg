@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,12 +47,22 @@ public class ProductProfile extends AppCompatActivity {
 
         itemPassed = (Item) cameFrom.getSerializableExtra("Item");
 
-        itemList = new ArrayList<Item>();
-
         dbHelper = new DatabaseHelper(this);
         
         int id = itemPassed.getItemId();
 
+        int amount = itemPassed.getAmount();
+
+
+
+        Log.d("profile", "here");
+        tv_j_productProfile_product.setText(itemPassed.getProduct());
+        tv_j_productProfile_amount.setText(String.valueOf(itemPassed.getAmount()));
+        tv_j_productProfile_location.setText(String.valueOf(itemPassed.getLocation()));
+        tv_j_productProfile_cost.setText(String.valueOf(itemPassed.getCost()));
+        tv_j_productProfile_expDate.setText(itemPassed.getExpdate());
+        tv_j_productProfile_purchaseDate.setText(itemPassed.getPurchasedate());
+        Log.d("after", "after");
 
 
         ButtonEventHandler();
@@ -62,6 +73,9 @@ public class ProductProfile extends AppCompatActivity {
         btn_j_productProfile_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditItem.putExtra("Item", itemPassed);
+
+
                 startActivity(EditItem);
             }
         });

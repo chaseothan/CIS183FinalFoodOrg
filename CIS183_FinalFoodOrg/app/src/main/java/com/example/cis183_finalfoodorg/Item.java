@@ -1,6 +1,8 @@
 package com.example.cis183_finalfoodorg;
 
-public class Item
+import java.io.Serializable;
+
+public class Item implements Serializable
 {
 
 
