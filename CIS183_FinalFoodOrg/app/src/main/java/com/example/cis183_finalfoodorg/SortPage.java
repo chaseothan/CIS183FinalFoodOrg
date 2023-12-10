@@ -22,6 +22,7 @@ public class SortPage extends AppCompatActivity {
     ImageView btn_j_sortPage_amount;
     ImageView btn_j_sortPage_expdate;
     Intent TotalList;
+    Boolean isDecending;
 
 
     @Override
@@ -62,6 +63,9 @@ public class SortPage extends AppCompatActivity {
                 Log.d("Put Extra", "Put extra");
                 TotalList.putExtra("Sort", "username");
 
+                isDecending = s_j_sortPage_switch.isChecked();
+                TotalList.putExtra("Decending", isDecending);
+
                 Log.d("Go to next activity", "TotalList");
                 startActivity(TotalList);
             }
@@ -70,18 +74,33 @@ public class SortPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //  pass totalList "amount"
+                Log.d("Put Extra", "Put extra");
+                TotalList.putExtra("Sort", "amount");
+
+                Log.d("Go to next activity", "TotalList");
+                startActivity(TotalList);
             }
         });
         btn_j_sortPage_cost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //  pass totalList "cost"
+                Log.d("Put Extra", "Put extra");
+                TotalList.putExtra("Sort", "cost");
+
+                Log.d("Go to next activity", "TotalList");
+                startActivity(TotalList);
             }
         });
         btn_j_sortPage_expdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //  pass totalList "expdate"
+                Log.d("Put Extra", "Put extra");
+                TotalList.putExtra("Sort", "expdate");
+
+                Log.d("Go to next activity", "TotalList");
+                startActivity(TotalList);
             }
         });
 
