@@ -19,6 +19,7 @@ public class EditItem extends AppCompatActivity {
     EditText et_j_editItem_cost;
     EditText et_j_editItem_expDate;
     EditText et_j_editItem_purchaseDate;
+    Item itemPassed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,19 @@ public class EditItem extends AppCompatActivity {
         et_j_editItem_expDate = findViewById(R.id.et_v_editItem_expDate);
         et_j_editItem_purchaseDate = findViewById(R.id.et_v_editItem_purchaseDate);
 
+        Intent cameFrom = getIntent();
+
+        itemPassed = (Item) cameFrom.getSerializableExtra("Item");
+
         ProductProfile = new Intent(EditItem.this, ProductProfile.class);
         HomePage = new Intent(EditItem.this, HomePage.class);
+
+        et_j_editItem_product.setText(itemPassed.getProduct());
+        et_j_editItem_amount.setText(String.valueOf(itemPassed.getAmount()));
+        et_j_editItem_location.setText(String.valueOf(itemPassed.getLocation()));
+        et_j_editItem_cost.setText(String.valueOf(itemPassed.getCost()));
+        et_j_editItem_expDate.setText(itemPassed.getExpdate());
+        et_j_editItem_purchaseDate.setText(itemPassed.getPurchasedate());
 
         ButtonEventHandler();
     }
@@ -44,10 +56,13 @@ public class EditItem extends AppCompatActivity {
         btn_j_editItem_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
+
+
                 startActivity(ProductProfile);
             }
         });
-        btn_j_editItem_edit.setOnClickListener(new View.OnClickListener() {
+        Btn_j_editItem_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(HomePage);

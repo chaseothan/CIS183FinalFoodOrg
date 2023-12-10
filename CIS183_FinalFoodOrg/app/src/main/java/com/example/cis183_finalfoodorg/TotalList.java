@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -25,6 +26,7 @@ public class TotalList extends AppCompatActivity {
     DatabaseHelper dbHelper;
     ArrayList<Item> itemList;
     TotalListAdapter adapter;
+    Intent productProfile;
 
 
 
@@ -43,6 +45,7 @@ public class TotalList extends AppCompatActivity {
         HomePage = new Intent(TotalList.this, HomePage.class);
         PlaceList = new Intent(TotalList.this, PlaceList.class);
         Sort = new Intent(TotalList.this, SortPage.class);
+        productProfile = new Intent(TotalList.this, ProductProfile.class);
 
         //Intent cameFrom = getIntent();
 
@@ -94,6 +97,16 @@ public class TotalList extends AppCompatActivity {
             @Override
             public void onClick(View v) { startActivity(Sort);
 
+            }
+        });
+        lv_j_totalList_listOfItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                productProfile.putExtra("Item", itemList.get(position));
+
+                Log.d("click", "clicked");
+                startActivity(productProfile);
             }
         });
     }
