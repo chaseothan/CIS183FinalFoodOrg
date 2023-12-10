@@ -20,6 +20,8 @@ public class EditItem extends AppCompatActivity {
     EditText et_j_editItem_expDate;
     EditText et_j_editItem_purchaseDate;
     Item itemPassed;
+    DatabaseHelper dbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class EditItem extends AppCompatActivity {
         ProductProfile = new Intent(EditItem.this, ProductProfile.class);
         HomePage = new Intent(EditItem.this, HomePage.class);
 
+        dbHelper = new DatabaseHelper(this);
+
         et_j_editItem_product.setText(itemPassed.getProduct());
         et_j_editItem_amount.setText(String.valueOf(itemPassed.getAmount()));
         et_j_editItem_location.setText(String.valueOf(itemPassed.getLocation()));
@@ -56,7 +60,13 @@ public class EditItem extends AppCompatActivity {
         btn_j_editItem_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
+
+                Item updatedItem = new Item(et_j_editItem_product.getText().toString(), Integer.parseInt(et_j_editItem_amount.getText().toString()), Double.parseDouble(et_j_editItem_cost.getText().toString()), et_j_editItem_expDate.getText().toString(), et_j_editItem_purchaseDate.getText().toString(), Integer.parseInt(et_j_editItem_location.getText().toString()), itemPassed.getItemId());
+
+                ProductProfile.putExtra("Item", updatedItem);
+
+                dbHelper.updateItem(updatedItem);
 
 
                 startActivity(ProductProfile);

@@ -332,6 +332,19 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
 
     }
+    public void updateItem(Item n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+
+
+        db.execSQL("UPDATE " + TABLE_ITEMS + " SET product = '" + n.getProduct() + "', amount = '" + n.getAmount() + "', cost = '" + n.getCost() + "', expdate = '" + n.getExpdate() + "', purchasedate = '" + n.getPurchasedate() + "', placeId = '" + n.getLocation() + "' WHERE itemId = '" + n.getItemId() + "';");
+
+
+
+        db.close();
+    }
 
     @SuppressLint("Range")
     public ArrayList<Item> getAllItems()
