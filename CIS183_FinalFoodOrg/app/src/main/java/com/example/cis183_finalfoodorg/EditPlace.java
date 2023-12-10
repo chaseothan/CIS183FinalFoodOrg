@@ -14,6 +14,8 @@ public class EditPlace extends AppCompatActivity {
     ImageView btn_j_editPlace_edit;
     ImageView btn_j_editPlace_home;
     EditText et_j_editPlace_nameOfPlace;
+    Place placePassed;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,14 @@ public class EditPlace extends AppCompatActivity {
         ViewPlace = new Intent(EditPlace.this, ViewPlace.class);
         HomePage = new Intent(EditPlace.this, HomePage.class);
 
+        Intent cameFrom = getIntent();
+
+        placePassed = (Place) cameFrom.getSerializableExtra("Place");
+
         ButtonEventhandler();
+
+        dbHelper = new DatabaseHelper(this);
+        et_j_editPlace_nameOfPlace.setText(placePassed.getPlace());
 
     }
     public void ButtonEventhandler()
@@ -41,6 +50,13 @@ public class EditPlace extends AppCompatActivity {
         btn_j_editPlace_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Place updatedPlace = new Place(et_j_editPlace_nameOfPlace.getText().toString(), placePassed.getUsername(), placePassed.getPlaceId());
+
+                ViewPlace.putExtra("Place", updatedPlace);
+
+                dbHelper.updatePlace(updatedPlace);
+
                 startActivity(ViewPlace);
             }
         });

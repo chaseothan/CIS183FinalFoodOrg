@@ -345,6 +345,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
     }
+    public void updatePlace(Place n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("UPDATE " + TABLE_PLACES + " SET placename = '" + n.getPlace() + "' WHERE placeId = '" + n.getPlaceId() + "';");
+
+        db.close();
+    }
 
     @SuppressLint("Range")
     public ArrayList<Item> getAllItems()

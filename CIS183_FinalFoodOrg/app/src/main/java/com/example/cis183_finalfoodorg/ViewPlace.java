@@ -64,6 +64,10 @@ public class ViewPlace extends AppCompatActivity {
 
         tv_j_viewPlace_titleOfPlace = findViewById(R.id.tv_v_viewPlace_place);
 
+        tv_j_viewPlace_titleOfPlace.setText(placePassed.getPlace());
+
+
+
         PlaceList = new Intent(ViewPlace.this, PlaceList.class);
         TotalList = new Intent(ViewPlace.this, TotalList.class);
         EditPlace = new Intent(ViewPlace.this, EditPlace.class);
@@ -90,6 +94,11 @@ public class ViewPlace extends AppCompatActivity {
         btn_j_viewPlace_editPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditPlace.putExtra("Place", placePassed);
+
+
+
+
                 startActivity(EditPlace);
             }
         });
