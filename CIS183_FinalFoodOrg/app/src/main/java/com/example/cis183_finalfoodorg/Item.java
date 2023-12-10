@@ -13,6 +13,7 @@ public class Item
     private String expdate;
     private String purchasedate;
     private int location;
+    private int itemId;
 
 
     public Item()
@@ -20,10 +21,10 @@ public class Item
 
     }
 
-    public Item(String p, int a, double c, String ex, String pd, int l)
+    public Item(String p, int a, double c, String ex, String pd, int l, int Id)
     {
 
-        //itemId = id;
+        itemId = Id;
         product = p;
         amount = a;
         cost = c;

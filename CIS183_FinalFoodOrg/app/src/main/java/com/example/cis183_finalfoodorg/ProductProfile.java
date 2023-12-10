@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ProductProfile extends AppCompatActivity {
     Intent HomePage;
     Intent EditItem;
@@ -19,6 +21,9 @@ public class ProductProfile extends AppCompatActivity {
     TextView tv_j_productProfile_cost;
     TextView tv_j_productProfile_expDate;
     TextView tv_j_productProfile_purchaseDate;
+    Item itemPassed;
+    ArrayList<Item> itemList;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,15 @@ public class ProductProfile extends AppCompatActivity {
 
         EditItem = new Intent(ProductProfile.this, EditItem.class);
         HomePage = new Intent(ProductProfile.this, HomePage.class);
+
+        Intent cameFrom = getIntent();
+
+        itemPassed = (Item) cameFrom.getSerializableExtra("Item");
+
+        itemList = new ArrayList<Item>();
+
+        dbHelper = new DatabaseHelper(this);
+        int id = itemPassed.getItemid
 
         ButtonEventHandler();
         //fill func for tvs

@@ -10,11 +10,9 @@
     <ImageView
         android:id="@+id/imageView21"
         android:layout_width="165dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="132dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="194dp"
-        app:layout_constraintBottom_toTopOf="@+id/dd_v_addItem_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add" />
@@ -23,10 +21,10 @@
         android:id="@+id/imageView22"
         android:layout_width="176dp"
         android:layout_height="502dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView21"
         app:srcCompat="@drawable/product_profile_items" />
 
     <ImageView
@@ -34,18 +32,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_purchaseDate"
+        app:layout_constraintTop_toBottomOf="@+id/imageView22"
         app:srcCompat="@drawable/addbtn" />
 
     <ImageView
         android:id="@+id/btn_v_addItem_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintStart_toEndOf="@+id/btn_v_addItem_add"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_purchaseDate"
         app:srcCompat="@drawable/home" />
 
@@ -53,63 +51,64 @@
         android:id="@+id/et_v_addItem_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView21" />
 
     <EditText
         android:id="@+id/et_v_addItem_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginBottom="316dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dd_v_addItem_location" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mtdvaeI_tino_dcoadd_l" />
 
     <EditText
         android:id="@+id/et_v_addItem_expDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_cost" />
 
     <EditText
         android:id="@+id/et_v_addItem_purchaseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_expDate" />
 
     <EditText
         android:id="@+id/et_v_addItem_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_product" />
 
     <Spinner
         android:id="@+id/mtdvaeI_tino_dcoadd_l"
         android:layout_width="185dp"
         android:layout_height="67dp"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="273dp" />
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_v_addItem_amount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
