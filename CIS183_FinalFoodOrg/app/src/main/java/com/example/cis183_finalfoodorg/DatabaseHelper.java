@@ -57,6 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
+    //  Initialize
+    // ==============================================================================================
     public void initializeAllTables()
     {
 
@@ -171,6 +173,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
+    // ==============================================================================================
+
 
     public int totalNumberEntries(String tableName)
     {
@@ -184,6 +188,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
 
+    //  Username
+    // ==============================================================================================
     public void addNewUser(String u, String p)
     {
 
@@ -311,6 +317,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
+    // ==============================================================================================
     public void addNewItem(Item n)
     {
         Log.d("Database Helper", "Start of Add Item");
@@ -323,6 +330,61 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('" + n.getProduct() + "','" + n.getAmount() + "','" + n.getCost() + "','" + n.getExpdate() + "','" + n.getPurchasedate() + "','" + n.getLocation() + "');");
 
         db.close();
+
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Item> getAllItems()
+    {
+
+        Log.d("getAllItems", "Start");
+        ArrayList<Item> itemList = new ArrayList<Item>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " INNER JOIN " + TABLE_PLACES + " ON " + TABLE_PLACES + ".username = " + TABLE_USERS + ".username " + "INNER JOIN " + TABLE_ITEMS + " ON " + TABLE_PLACES + ".placeId = " + TABLE_ITEMS + ".placeId WHERE " + TABLE_USERS + ".username = '" +  AppData.getUsername() + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Log.d("getAllItems", "Statement");
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int itemId;
+        String productName;
+        int amount;
+        double cost;
+        String expdate;
+        String purchasedate;
+        int location;
+
+
+        Log.d("getAllItems", "Move to first");
+        if (cursor.moveToFirst())
+        {
+
+            do
+            {
+//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                productName = cursor.getString(cursor.getColumnIndex("product"));
+                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
+                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
+                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
+                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
+                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+//
+                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location));
+                //Log.d("getAllItems", " piece = " + location);
+            }
+            while (cursor.moveToNext());
+
+
+        }
+
+        db.close();
+
+        Log.d("getAllItems", "Return");
+        return itemList;
+
+
+
 
     }
 
@@ -381,66 +443,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
-    @SuppressLint("Range")
-    public ArrayList<Item> getAllItems()
-    {
 
-        Log.d("getAllItems", "Start");
-        ArrayList<Item> itemList = new ArrayList<Item>();
-
-        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + ";";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Log.d("getAllItems", "Statement");
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        int itemId;
-        String productName;
-        int amount;
-        double cost;
-        String expdate;
-        String purchasedate;
-        int location;
-
-
-        Log.d("getAllItems", "Move to first");
-        if (cursor.moveToFirst())
-        {
-
-            do
-            {
-//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
-                productName = cursor.getString(cursor.getColumnIndex("product"));
-                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
-                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
-                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
-                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
-                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
-//
-                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location));
-                //Log.d("getAllItems", " piece = " + location);
-            }
-            while (cursor.moveToNext());
-
-
-        }
-
-        db.close();
-
-        Log.d("getAllItems", "Return");
-        return itemList;
-
-
-
-
-    }
     @SuppressLint("Range")
     public ArrayList<Place> getAllPlaces()
     {
         ArrayList<Place> listOfPlaces = new ArrayList<Place>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_PLACES + ";";
+        String selectQuery = "SELECT * FROM " + TABLE_PLACES + " WHERE username = '" + AppData.getUsername() + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -478,13 +487,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
         Log.d("listOfPlaces", "Return");
         return listOfPlaces;
     }
-    public void addNewPlace(String p, String u)
+    public void addNewPlace(String p)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('" + p + "','" + u + "')");
+        db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('" + p + "','" + AppData.getUsername() + "')");
 
         db.close();
 

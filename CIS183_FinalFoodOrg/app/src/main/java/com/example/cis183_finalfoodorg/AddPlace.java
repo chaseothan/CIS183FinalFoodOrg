@@ -42,7 +42,7 @@ public class AddPlace extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(PlaceList);
-                dbHelper.addNewPlace(et_j_addPlace_place.getText().toString(), AppData.getUsername());
+                dbHelper.addNewPlace(et_j_addPlace_place.getText().toString());
             }
 
         });
