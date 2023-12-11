@@ -8,15 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class EditUser extends AppCompatActivity {
     Intent MainActivity;
     Intent HomePage;
-    EditText et_j_editUserPage_username;
+    TextView tv_j_editUserPage_username;
     EditText et_j_editUserPage_password;
     ImageView btn_j_editUserPage_editUser;
     ImageView btn_j_editUserPage_home;
     ImageView btn_j_editUserPage_remove;
+    DatabaseHelper dbHelper;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +31,19 @@ public class EditUser extends AppCompatActivity {
         btn_j_editUserPage_home = (ImageView) findViewById(R.id.btn_v_editUserPage_home);
         btn_j_editUserPage_remove = (ImageView) findViewById(R.id.btn_v_editUserPage_remove);
 
-        et_j_editUserPage_username = findViewById(R.id.et_v_editUserPage_username);
+        tv_j_editUserPage_username = findViewById(R.id.tv_v_editUser_username);
         et_j_editUserPage_password = findViewById(R.id.et_v_editUserPage_password);
+
+        dbHelper = new DatabaseHelper(this);
 
         HomePage = new Intent(EditUser.this, HomePage.class);
         MainActivity = new Intent(EditUser.this, MainActivity.class);
+
+        tv_j_editUserPage_username.setText(AppData.getUsername());
+
+
+
+        et_j_editUserPage_password.setText(dbHelper.getPassword());
 
         ButtonEventHandler();
 
@@ -41,12 +53,16 @@ public class EditUser extends AppCompatActivity {
         btn_j_editUserPage_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 startActivity(HomePage);
             }
         });
         btn_j_editUserPage_editUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dbHelper.updatePassword(et_j_editUserPage_password.getText().toString());
+
                 startActivity(HomePage);
             }
         });
