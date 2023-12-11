@@ -21,6 +21,8 @@ public class EditItem extends AppCompatActivity {
     EditText et_j_editItem_purchaseDate;
     Item itemPassed;
     DatabaseHelper dbHelper;
+    ImageView btn_j_editItem_remove;
+
 
 
     @Override
@@ -29,6 +31,7 @@ public class EditItem extends AppCompatActivity {
         setContentView(R.layout.activity_edit_item);
         btn_j_editItem_edit = (ImageView) findViewById(R.id.btn_v_editItem_edit);
         Btn_j_editItem_home = (ImageView) findViewById(R.id.btn_v_editItem_home);
+        btn_j_editItem_remove = (ImageView) findViewById(R.id.btn_v_editItem_remove);
 
         et_j_editItem_product = findViewById(R.id.et_v_editItem_product);
         et_j_editItem_amount = findViewById(R.id.et_v_editItem_amount);
@@ -76,6 +79,12 @@ public class EditItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(HomePage);
+            }
+        });
+        btn_j_editItem_remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.removeItem(itemPassed);
             }
         });
     }

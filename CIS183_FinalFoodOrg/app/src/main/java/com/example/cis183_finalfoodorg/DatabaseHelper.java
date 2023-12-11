@@ -332,6 +332,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
 
     }
+    public void removeItem(Item n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_ITEMS + " WHERE itemId = '" + n.getItemId() + "';");
+
+        db.close();
+    }
     public void updateItem(Item n)
     {
         SQLiteDatabase db = this.getWritableDatabase();
