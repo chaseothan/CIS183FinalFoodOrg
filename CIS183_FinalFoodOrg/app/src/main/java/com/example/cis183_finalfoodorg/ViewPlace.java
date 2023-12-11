@@ -78,6 +78,7 @@ public class ViewPlace extends AppCompatActivity {
         btn_j_viewPlace_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dbHelper.deletePlace(placePassed);
                 startActivity(PlaceList);
             }
         });

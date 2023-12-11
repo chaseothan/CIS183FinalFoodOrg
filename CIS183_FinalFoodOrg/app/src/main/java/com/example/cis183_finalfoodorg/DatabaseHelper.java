@@ -378,6 +378,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
     }
+    public void deleteAllItemsInPlace(Place p)
+    {
+        //  called when place is deleted
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_ITEMS + " WHERE placeId = '" + p.getPlaceId() + "';");
+
+        db.close();
+
+    }
     public void updateItem(Item n)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -601,6 +611,19 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
         db.execSQL("INSERT INTO " + TABLE_PLACES + " (placename, username) VALUES ('" + p + "','" + AppData.getUsername() + "')");
+
+        db.close();
+
+    }
+
+    public void deletePlace(Place p)
+    {
+        //  delete all items attached to place first
+        deleteAllItemsInPlace(p);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_PLACES + " WHERE placeId = '" + p.getPlaceId() + "';");
 
         db.close();
 

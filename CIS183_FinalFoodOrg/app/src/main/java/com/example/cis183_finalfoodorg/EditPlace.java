@@ -24,6 +24,7 @@ public class EditPlace extends AppCompatActivity {
         btn_j_editPlace_edit = (ImageView) findViewById(R.id.btn_v_editPlace_editPlace);
         btn_j_editPlace_home = (ImageView) findViewById(R.id.btn_v_editPlace_home);
 
+
         et_j_editPlace_nameOfPlace = findViewById(R.id.et_v_editPlace_nameOfPlace);
 
         ViewPlace = new Intent(EditPlace.this, ViewPlace.class);
@@ -60,5 +61,10 @@ public class EditPlace extends AppCompatActivity {
                 startActivity(ViewPlace);
             }
         });
+
+
+
+
+
     }
 }

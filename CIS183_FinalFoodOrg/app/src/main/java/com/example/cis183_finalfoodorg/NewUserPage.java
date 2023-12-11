@@ -45,13 +45,20 @@ public class NewUserPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (dbHelper.addNewUser(et_j_addUser_username.getText().toString(), et_j_addUser_password.getText().toString()))
+                if (!et_j_addUser_username.getText().toString().equals("") && !et_j_addUser_password.getText().toString().equals(""))
                 {
-                    startActivity(MainActivityIntent);
+                    if (dbHelper.addNewUser(et_j_addUser_username.getText().toString(), et_j_addUser_password.getText().toString()))
+                    {
+                        startActivity(MainActivityIntent);
+                    }
+                    else
+                    {
+                        Log.d("AddUser", "false");
+                    }
                 }
                 else
                 {
-                    Log.d("AddUser", "false");
+                    Log.d("Add User page", "Fields Not filled Out");
                 }
 
 
