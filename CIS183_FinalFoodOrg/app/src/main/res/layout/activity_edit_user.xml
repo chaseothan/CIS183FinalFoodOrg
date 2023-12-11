@@ -21,9 +21,14 @@
         android:id="@+id/imageView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/login_ltems"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="172dp" />
+        android:layout_marginTop="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_v_editUserPage_editUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintVertical_bias="0.07"
+        app:srcCompat="@drawable/login_ltems" />
 
     <EditText
         android:id="@+id/et_v_editUserPage_password"
@@ -62,17 +67,25 @@
         android:id="@+id/btn_v_editUserPage_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toEndOf="@+id/btn_v_editUserPage_home"
+        app:layout_constraintTop_toBottomOf="@+id/btn_v_editUserPage_editUser"
+        app:layout_constraintVertical_bias="0.622"
         app:srcCompat="@drawable/removeuser" />
 
     <TextView
         android:id="@+id/tv_v_editUser_username"
         android:layout_width="193dp"
         android:layout_height="28dp"
-        android:text="imagine this says ur username"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="224dp" />
+        android:layout_marginTop="124dp"
+        android:text="Username"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/et_v_editUserPage_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

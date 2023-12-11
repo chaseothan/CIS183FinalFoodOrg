@@ -69,6 +69,7 @@ public class EditUser extends AppCompatActivity {
         btn_j_editUserPage_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dbHelper.deleteUser(tv_j_editUserPage_username.getText().toString());
                 startActivity(MainActivity);
             }
         });

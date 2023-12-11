@@ -214,6 +214,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
+    public void deleteUser(String u)
+    {
+        deleteAllPlaces(u);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_USERS + " WHERE username = '" + u + "';");
+
+        db.close();
+
+    }
     @SuppressLint("Range")
     public void getAllUsernames()
     {
@@ -626,6 +637,52 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.execSQL("DELETE FROM " + TABLE_PLACES + " WHERE placeId = '" + p.getPlaceId() + "';");
 
         db.close();
+
+    }
+
+    public void deleteAllPlaces(String u)
+    {
+        //  delete all items attached to place first
+        ArrayList<Place> placesList = new ArrayList<Place>();
+        placesList = getAllPlaces();
+
+        //  delete all items in each place
+        for (int i = 0; i < placesList.size(); i++)
+        {
+            deleteAllItemsInPlace(placesList.get(i));
+        }
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_PLACES + " WHERE username = '" + u + "';");
+
+        db.close();
+
+    }
+
+    @SuppressLint("Range")
+    public String getPlaceName(int id)
+    {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT placename FROM " + TABLE_PLACES + " WHERE placeId = '" + id + "';";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        String placename;
+
+        if (cursor.moveToFirst())
+        {
+                placename = cursor.getString(cursor.getColumnIndex("placename"));
+
+                db.close();
+
+            return placename;
+        }
+
+        return "None";
+
 
     }
 

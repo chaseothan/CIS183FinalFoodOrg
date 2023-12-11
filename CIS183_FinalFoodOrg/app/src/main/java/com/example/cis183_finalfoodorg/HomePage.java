@@ -19,7 +19,7 @@ public class HomePage extends AppCompatActivity {
     Intent AddItem;
     Intent MainActivity;
     ImageView btn_j_homePage_add;
-    ImageView btn_j_homePage_use;
+    //ImageView btn_j_homePage_use;
     ImageView btn_j_homePage_editUser;
     ImageView btn_j_homePage_list;
     ImageView btn_j_homePage_place;
@@ -41,7 +41,7 @@ public class HomePage extends AppCompatActivity {
 
 
         btn_j_homePage_add = (ImageView) findViewById(R.id.btn_v_homePage_add);
-        btn_j_homePage_use = (ImageView) findViewById(R.id.btn_v_homePage_use);
+        //btn_j_homePage_use = (ImageView) findViewById(R.id.btn_v_homePage_use);
         btn_j_homePage_editUser = (ImageView) findViewById(R.id.btn_v_homePage_editUser);
         btn_j_homePage_list = (ImageView) findViewById(R.id.btn_v_homePage_list);
         btn_j_homePage_place = (ImageView) findViewById(R.id.btn_v_homePage_place);
@@ -58,12 +58,12 @@ public class HomePage extends AppCompatActivity {
                 startActivity(AddItem);
             }
         });
-        btn_j_homePage_use.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(Use);
-            }
-        });
+//        btn_j_homePage_use.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(Use);
+//            }
+//        });
         btn_j_homePage_editUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

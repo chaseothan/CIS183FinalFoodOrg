@@ -27,8 +27,9 @@ public class AddItem extends AppCompatActivity {
     ImageView btn_j_addItem_home;
     ImageView  btn_j_addItem_add;
     Intent HomePageIntent;
-    ArrayAdapter spinnerArrayAdapter;
+
     ArrayList<Place> listOfPlaces;
+    ArrayAdapter spinnerArrayAdapter;
     String[] placeNames;
     int[] placeIds;
     int selectedPlaceId;
@@ -40,6 +41,7 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+
 
         btn_j_addItem_add = (ImageView) findViewById(R.id.btn_v_addItem_add);
         btn_j_addItem_home = (ImageView) findViewById(R.id.btn_v_addItem_home);
@@ -91,6 +93,8 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 //  check for filled out
                 if (et_j_addItem_product.getText().toString().equals("") || et_j_addItem_amount.getText().toString().equals("") || et_j_addItem_cost.getText().toString().equals("") || et_j_addItem_expDate.getText().toString().equals("") || et_j_addItem_purchaseDate.getText().toString().equals("") || selectedPlaceId == -999)
                 {
@@ -98,11 +102,16 @@ public class AddItem extends AppCompatActivity {
                     Log.d("AddItem Click", "Missing Fields");
 
                 }
-                else
+                else if (isInt(et_j_addItem_amount.getText().toString()) == false || isDouble(et_j_addItem_cost.getText().toString()) == false)
                 {
 
 
+                    Log.d("Add, else if", "int/double wrong");
 
+
+                }
+                else
+                {
                     // make new item with id = 0, because database wont care and we have yet to create it
                     Item newItem = new Item(et_j_addItem_product.getText().toString(), Integer.parseInt(et_j_addItem_amount.getText().toString()), Double.parseDouble(et_j_addItem_cost.getText().toString()), et_j_addItem_expDate.getText().toString(), et_j_addItem_purchaseDate.getText().toString(), selectedPlaceId, 0);
 
@@ -149,6 +158,28 @@ public class AddItem extends AppCompatActivity {
 
     }
 
+
+    private boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+
+        } catch (NumberFormatException e) {
+
+            return false;
+        }
+    }
+
+    private boolean isInt(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+
+        } catch (NumberFormatException e) {
+
+            return false;
+        }
+    }
 
 
 
