@@ -7,21 +7,28 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddItem extends AppCompatActivity {
 
     EditText et_j_addItem_product;
     EditText et_j_addItem_amount;
-    Spinner et_j_addItem_location;
+    Spinner sp_j_addItem_location;
     EditText et_j_addItem_cost;
     EditText et_j_addItem_expDate;
     EditText et_j_addItem_purchaseDate;
     ImageView btn_j_addItem_home;
     ImageView  btn_j_addItem_add;
     Intent HomePageIntent;
+    ArrayAdapter spinnerArrayAdapter;
+    String[] placeNames;
+    int[] placeIds;
+
 
     DatabaseHelper dbHelper;
 
@@ -35,10 +42,26 @@ public class AddItem extends AppCompatActivity {
 
         et_j_addItem_product = findViewById(R.id.et_v_addItem_product);
         et_j_addItem_amount = findViewById(R.id.et_v_addItem_amount);
-        et_j_addItem_location =(Spinner) findViewById(R.id.mtdvaeI_tino_dcoadd_l);
+
+
+        //placeNames = new String[];
+        //placeIds = new String[];
+
+
+//        //  My baby spinner =================================================================================
+        sp_j_addItem_location =(Spinner) findViewById(R.id.mtdvaeI_tino_dcoadd_l);
+        spinnerArrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, placeNames);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_j_addItem_location.setAdapter(spinnerArrayAdapter);
+//        //  ====================================================================================================
+
+
+
         et_j_addItem_cost = findViewById(R.id.et_v_addItem_cost);
         et_j_addItem_expDate = findViewById(R.id.et_v_addItem_expDate);
         et_j_addItem_purchaseDate = findViewById(R.id.et_v_addItem_purchaseDate);
+
+
 
         HomePageIntent = new Intent(AddItem.this, HomePage.class);
 
@@ -70,5 +93,32 @@ public class AddItem extends AppCompatActivity {
 
             }
         });
+
+        sp_j_addItem_location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id)
+            {
+
+                Toast.makeText(AddItem.this, placeNames[i], Toast.LENGTH_SHORT).show();
+                Log.d("AddItem OnSelected Listener", placeNames[i]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+
+
     }
+
+
+
+
+
 }
