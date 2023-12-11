@@ -103,6 +103,12 @@ public class SortPage extends AppCompatActivity {
                 startActivity(TotalList);
             }
         });
+        btn_sortPage_j_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(TotalList);
+            }
+        });
 
 
     }
