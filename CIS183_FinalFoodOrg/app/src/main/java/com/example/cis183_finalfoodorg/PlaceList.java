@@ -47,7 +47,6 @@ public class PlaceList extends AppCompatActivity {
         placeList = new ArrayList<Place>();
 
         placeList = dbHelper.getAllPlaces();
-        Log.d("PlaceList", "got all places");
 
         ButtonEventHandler();
         fillListView();
@@ -80,10 +79,8 @@ public class PlaceList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int i, long id)
             {
                 //  put extra
-                Log.d("Put Extra", "Put extra");
                 viewPlace.putExtra("Place", placeList.get(i));
 
-                Log.d("Go to next activity", "View Place");
                 startActivity(viewPlace);
 
 
@@ -96,6 +93,5 @@ public class PlaceList extends AppCompatActivity {
         adapter = new PlaceListAdapter(this, placeList);
         lv_j_placeList_listOfPlaces.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        Log.d("PlaceList", "Filled List View");
     }
 }

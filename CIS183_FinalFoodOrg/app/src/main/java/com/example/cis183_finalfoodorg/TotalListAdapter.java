@@ -18,7 +18,6 @@ Context context;
 ArrayList<Item> listOfItems;
 
 public TotalListAdapter(Context c, ArrayList<Item> ls){
-    Log.d("oncreate", "created");
     context = c;
     listOfItems = ls;
 }
@@ -41,7 +40,6 @@ public TotalListAdapter(Context c, ArrayList<Item> ls){
     public View getView(int i, View view, ViewGroup parent) {
         if (view == null)
         {
-            Log.d("infalter", "inflate");
             LayoutInflater minflator = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             view = minflator.inflate(R.layout.custom_total_list_cell, null);
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class ViewPlace extends AppCompatActivity {
     Intent TotalList;
     Intent HomePage;
     Intent EditPlace;
+    Intent ProductProfile;
     TextView tv_j_viewPlace_titleOfPlace;
     ListView lv_j_viewPlace_listOfItems;
     ImageView btn_j_viewPlace_remove;
@@ -44,21 +46,14 @@ public class ViewPlace extends AppCompatActivity {
 
 
         placePassed = (Place) cameFrom.getSerializableExtra("Place");
-        Log.d("ViewPlace", "extras");
         //  find all records based on the placeId
         //  and fill PlaceListOfItems
         placeListOfItems = new ArrayList<Item>();
-        Log.d("ViewPlace", "item");
 
         dbHelper = new DatabaseHelper(this);
-        Log.d("ViewPlace", "db");
         int id = placePassed.getPlaceId();
-        Log.d("ViewPlace", "Id");
-        Log.d("Id = ", id + " ");
 
-        Log.d("ViewPlace", "Get all items by place");
         placeListOfItems = dbHelper.getAllItemsByPlace(id);
-        Log.d("ViewPlace", "Did it ^");
 
         lv_j_viewPlace_listOfItems = findViewById(R.id.lv_v_viewPlace_listOfItems);
 
@@ -72,6 +67,7 @@ public class ViewPlace extends AppCompatActivity {
         TotalList = new Intent(ViewPlace.this, TotalList.class);
         EditPlace = new Intent(ViewPlace.this, EditPlace.class);
         HomePage = new Intent(ViewPlace.this, HomePage.class);
+        ProductProfile = new Intent(ViewPlace.this, ProductProfile.class);
 
         ButtonEventHandler();
         fillListView();
@@ -97,8 +93,6 @@ public class ViewPlace extends AppCompatActivity {
                 EditPlace.putExtra("Place", placePassed);
 
 
-
-
                 startActivity(EditPlace);
             }
         });
@@ -108,12 +102,22 @@ public class ViewPlace extends AppCompatActivity {
                 startActivity(HomePage);
             }
         });
+        lv_j_viewPlace_listOfItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                ProductProfile.putExtra("Item", placeListOfItems.get(position));
+
+                startActivity(ProductProfile);
+            }
+        });
+
+
     }
 
     public void fillListView()
     {
 
-        Log.d("getAllItems", "Return");
         adapter = new TotalListAdapter(this, placeListOfItems);
         lv_j_viewPlace_listOfItems.setAdapter(adapter);
         adapter.notifyDataSetChanged();

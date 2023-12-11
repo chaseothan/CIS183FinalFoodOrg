@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class AddItem extends AppCompatActivity {
 
     EditText et_j_addItem_product;
@@ -26,8 +28,10 @@ public class AddItem extends AppCompatActivity {
     ImageView  btn_j_addItem_add;
     Intent HomePageIntent;
     ArrayAdapter spinnerArrayAdapter;
+    ArrayList<Place> listOfPlaces;
     String[] placeNames;
     int[] placeIds;
+    int selectedPlaceId;
 
 
     DatabaseHelper dbHelper;
@@ -43,9 +47,20 @@ public class AddItem extends AppCompatActivity {
         et_j_addItem_product = findViewById(R.id.et_v_addItem_product);
         et_j_addItem_amount = findViewById(R.id.et_v_addItem_amount);
 
+        selectedPlaceId = -999;
 
-        //placeNames = new String[];
-        //placeIds = new String[];
+        dbHelper = new DatabaseHelper(this);
+        listOfPlaces = dbHelper.getAllPlaces();
+
+        placeNames = new String[listOfPlaces.size()];
+        placeIds = new int[listOfPlaces.size()];
+
+        for (int i = 0; i < listOfPlaces.size(); i++)
+        {
+            placeNames[i] = listOfPlaces.get(i).getPlace().toString();
+            placeIds[i] = listOfPlaces.get(i).getPlaceId();
+        }
+
 
 
 //        //  My baby spinner =================================================================================
@@ -65,7 +80,7 @@ public class AddItem extends AppCompatActivity {
 
         HomePageIntent = new Intent(AddItem.this, HomePage.class);
 
-        dbHelper = new DatabaseHelper(this);
+
 
         ButtonEventHandler();
 
@@ -76,14 +91,28 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("Button Click", "pre item grab");
-                //Item newItem = new Item(et_j_addItem_product.getText().toString(), Integer.parseInt(et_j_addItem_amount.getText().toString()), Double.parseDouble(et_j_addItem_cost.getText().toString()), et_j_addItem_expDate.getText().toString(), et_j_addItem_purchaseDate.getText().toString(), Integer.parseInt(et_j_addItem_location.getText().toString()));
+                //  check for filled out
+                if (et_j_addItem_product.getText().toString().equals("") || et_j_addItem_amount.getText().toString().equals("") || et_j_addItem_cost.getText().toString().equals("") || et_j_addItem_expDate.getText().toString().equals("") || et_j_addItem_purchaseDate.getText().toString().equals("") || selectedPlaceId == -999)
+                {
 
-                Log.d("Button Click", "post item grab");
-                //dbHelper.addNewItem(newItem);
+                    Log.d("AddItem Click", "Missing Fields");
+
+                }
+                else
+                {
 
 
-                startActivity(HomePageIntent);
+
+                    // make new item with id = 0, because database wont care and we have yet to create it
+                    Item newItem = new Item(et_j_addItem_product.getText().toString(), Integer.parseInt(et_j_addItem_amount.getText().toString()), Double.parseDouble(et_j_addItem_cost.getText().toString()), et_j_addItem_expDate.getText().toString(), et_j_addItem_purchaseDate.getText().toString(), selectedPlaceId, 0);
+
+                    dbHelper.addNewItem(newItem);
+
+
+                    startActivity(HomePageIntent);
+                }
+
+
             }
         });
         btn_j_addItem_home.setOnClickListener(new View.OnClickListener() {
@@ -98,9 +127,12 @@ public class AddItem extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id)
             {
+                Log.d("ItemSelect Button", "Enter");
+
 
                 Toast.makeText(AddItem.this, placeNames[i], Toast.LENGTH_SHORT).show();
-                Log.d("AddItem OnSelected Listener", placeNames[i]);
+                selectedPlaceId = placeIds[i];
+
             }
 
             @Override

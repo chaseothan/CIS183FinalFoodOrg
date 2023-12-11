@@ -32,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
         dbHelper.initializeAllTables();
 
-        Log.d("USERS Count: ", dbHelper.totalNumberEntries("Users") + "");
-        Log.d("PLACES Count: ", dbHelper.totalNumberEntries("Places") + "");
-        Log.d("ITEMS Count: ", dbHelper.totalNumberEntries("Items") + "");
-
 
         //btn_j_main_totalList = findViewById(R.id.btn_v_main_editUser);
         //btn_j_main_placeList = findViewById(R.id.btn_v_main_removeUser);
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         //PlaceListIntent = new Intent(MainActivity.this, PlaceList.class);
 
         ButtonClickEventHandler();
-        dbHelper.getAllUsernames();
+        //dbHelper.getAllUsernames();
 
     }
 
@@ -66,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         btn_j_main_addNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("did","click");
                 startActivity(NewUserPageIntent);
 
             }
@@ -86,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                         AppData.setUsername(et_j_main_username.getText().toString());
 
                         //  static class for logged in user
-                        Log.d("check","match");
                         startActivity(HomePageintent);
 
                     }

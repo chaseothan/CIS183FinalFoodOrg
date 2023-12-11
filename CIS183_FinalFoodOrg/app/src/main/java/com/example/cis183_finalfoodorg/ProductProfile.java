@@ -55,14 +55,12 @@ public class ProductProfile extends AppCompatActivity {
 
 
 
-        Log.d("profile", "here");
         tv_j_productProfile_product.setText(itemPassed.getProduct());
         tv_j_productProfile_amount.setText(String.valueOf(itemPassed.getAmount()));
         tv_j_productProfile_location.setText(String.valueOf(itemPassed.getLocation()));
         tv_j_productProfile_cost.setText(String.valueOf(itemPassed.getCost()));
         tv_j_productProfile_expDate.setText(itemPassed.getExpdate());
         tv_j_productProfile_purchaseDate.setText(itemPassed.getPurchasedate());
-        Log.d("after", "after");
 
 
         ButtonEventHandler();

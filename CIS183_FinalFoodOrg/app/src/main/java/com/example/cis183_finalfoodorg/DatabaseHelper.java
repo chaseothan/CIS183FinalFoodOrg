@@ -190,16 +190,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //  Username
     // ==============================================================================================
-    public void addNewUser(String u, String p)
+    public boolean addNewUser(String u, String p)
     {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        if (checkIfUsernameExists(u))
+        {
+            //  Bad pick another
+            return false;
+        }
+        else
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        //  check if the username is unique first
+            //  check if the username is unique first
 
-        db.execSQL("INSERT INTO " + TABLE_USERS + " VALUES ('" + u + "','" + p + "')");
+            db.execSQL("INSERT INTO " + TABLE_USERS + " VALUES ('" + u + "','" + p + "')");
 
-        db.close();
+            db.close();
+            return true;
+        }
+
+
 
     }
 
@@ -235,7 +246,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean checkIfUsernameExists(String username)
     {
 
-        Log.d("check username exists", "start");
+
         SQLiteDatabase db = getReadableDatabase();
 
         String checkUsername = "SELECT count(username) FROM " + TABLE_USERS + " WHERE username = '" + username + "';";
@@ -248,15 +259,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
 
-        Log.d("check username exists", "end");
+
         if (count != 0)
         {
-            Log.d("Return ", "true");
+
             return true;
         }
         else
         {
-            Log.d("Return ", "False");
+
             return  false;
         }
 
@@ -266,10 +277,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean correctUserNameAndPassword(String username, String password)
     {
 
-        Log.d("correct name combo", "start");
+
         if (checkIfUsernameExists(username))
         {
-            Log.d("check username exists", "returned true");
+
             String getUserInfo = "SELECT password from " + TABLE_USERS + " WHERE username = '" + username + "';";
 
             SQLiteDatabase db = this.getReadableDatabase();
@@ -283,7 +294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 if (password.equals(cursor.getString(0).toString()))
                 {
 
-                    Log.d("check password", "good");
+
                     //  correct username and password, log in
 
                     db.close();
@@ -292,7 +303,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 }
                 else
                 {
-                    Log.d("check password", "bad");
+
                     //  correct username, but incorrect password
                     db.close();
                     return false;
@@ -303,7 +314,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             else
             {
                 //  incorrect username
-                Log.d("No username", "None found");
+
                 db.close();
             }
 
@@ -311,18 +322,45 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         }
 
-        Log.d("end", "return false next");
+
         return false;
 
 
     }
 
-    // ==============================================================================================
-    public void addNewItem(Item n)
+    @SuppressLint("Range")
+    public String getPassword()
     {
-        Log.d("Database Helper", "Start of Add Item");
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String password = ("SELECT password FROM " + TABLE_USERS + " WHERE username = '" + AppData.getUsername() + "';");
+
+        Cursor cursor = db.rawQuery(password, null);
+
+        if (cursor.moveToFirst())
+        {
+            password = cursor.getString(cursor.getColumnIndex("password"));
+
+        }
+
+        db.close();
+        return password;
+
+    }
+    public void updatePassword(String n)
+    {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        db.execSQL("UPDATE " + TABLE_USERS + " SET password = '" + n + "' WHERE username = '" + AppData.getUsername() + "';");
+
+        db.close();
+    }
+
+    // ==============================================================================================
+    //  Item
+    public void addNewItem(Item n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
 
 
         //  db.execSQL("INSERT INTO " + TABLE_ITEMS + " (product, amount, cost, expdate, purchasedate, placeId) VALUES ('Eggs', '12', '8.99', '12/15/2023', '12/03/2023', '1');");
@@ -344,63 +382,21 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-
-
-
         db.execSQL("UPDATE " + TABLE_ITEMS + " SET product = '" + n.getProduct() + "', amount = '" + n.getAmount() + "', cost = '" + n.getCost() + "', expdate = '" + n.getExpdate() + "', purchasedate = '" + n.getPurchasedate() + "', placeId = '" + n.getLocation() + "' WHERE itemId = '" + n.getItemId() + "';");
 
-
-
         db.close();
     }
     @SuppressLint("Range")
-    public String getPassword()
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String password = ("SELECT password FROM " + TABLE_USERS + " WHERE username = '" + AppData.getUsername() + "';");
-
-        Cursor cursor = db.rawQuery(password, null);
-
-        if (cursor.moveToFirst())
-        {
-                password = cursor.getString(cursor.getColumnIndex("password"));
-
-        }
-
-        db.close();
-        return password;
-
-    }
-    public void updatePlace(Place n)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.execSQL("UPDATE " + TABLE_PLACES + " SET placename = '" + n.getPlace() + "' WHERE placeId = '" + n.getPlaceId() + "';");
-
-        db.close();
-    }
-    public void updatePassword(String n)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.execSQL("UPDATE " + TABLE_USERS + " SET password = '" + n + "' WHERE username = '" + AppData.getUsername() + "';");
-
-        db.close();
-    }
-
-    @SuppressLint("Range")
-    public ArrayList<Item> getAllItems()
+    public ArrayList<Item> sortAllItemsBy(String sortBy)
     {
 
-        Log.d("getAllItems", "Start");
+
         ArrayList<Item> itemList = new ArrayList<Item>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_USERS + " INNER JOIN " + TABLE_PLACES + " ON " + TABLE_PLACES + ".username = " + TABLE_USERS + ".username " + "INNER JOIN " + TABLE_ITEMS + " ON " + TABLE_PLACES + ".placeId = " + TABLE_ITEMS + ".placeId WHERE " + TABLE_USERS + ".username = '" +  AppData.getUsername() + "';";
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " INNER JOIN " + TABLE_PLACES + " ON " + TABLE_PLACES + ".username = " + TABLE_USERS + ".username " + "INNER JOIN " + TABLE_ITEMS + " ON " + TABLE_PLACES + ".placeId = " + TABLE_ITEMS + ".placeId WHERE " + TABLE_USERS + ".username = '" +  AppData.getUsername() + "' ORDER BY " + sortBy + ";";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Log.d("getAllItems", "Statement");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         int itemId;
@@ -412,7 +408,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         int location;
 
 
-        Log.d("getAllItems", "Move to first");
         if (cursor.moveToFirst())
         {
 
@@ -437,26 +432,21 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
 
-        Log.d("getAllItems", "Return");
         return itemList;
-
-
-
 
     }
 
+
     @SuppressLint("Range")
-    public ArrayList<Item> getAllItemsByPlace(int id)
+    public ArrayList<Item> getAllItems()
     {
 
-        Log.d("getAllItems", "Start");
         ArrayList<Item> itemList = new ArrayList<Item>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + " WHERE placeId = '" + id + "';";
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " INNER JOIN " + TABLE_PLACES + " ON " + TABLE_PLACES + ".username = " + TABLE_USERS + ".username " + "INNER JOIN " + TABLE_ITEMS + " ON " + TABLE_PLACES + ".placeId = " + TABLE_ITEMS + ".placeId WHERE " + TABLE_USERS + ".username = '" +  AppData.getUsername() + "';";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Log.d("getAllItems", "Statement");
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         int itemId;
@@ -468,22 +458,21 @@ public class DatabaseHelper extends SQLiteOpenHelper
         int location;
 
 
-        Log.d("getAllItems", "Move to first");
         if (cursor.moveToFirst())
         {
 
             do
             {
 //                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
-                  productName = cursor.getString(cursor.getColumnIndex("product"));
-                  amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
-                  cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
-                  expdate = cursor.getString(cursor.getColumnIndex("expdate"));
-                  purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
-                  location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
-                  itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                productName = cursor.getString(cursor.getColumnIndex("product"));
+                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
+                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
+                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
+                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
+                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
 //
-                  itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
+                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
                 //Log.d("getAllItems", " piece = " + location);
             }
             while (cursor.moveToNext());
@@ -493,12 +482,74 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.close();
 
-        Log.d("getAllItems", "Return");
         return itemList;
 
 
 
 
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Item> getAllItemsByPlace(int id)
+    {
+
+        ArrayList<Item> itemList = new ArrayList<Item>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_ITEMS + " WHERE placeId = '" + id + "';";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        int itemId;
+        String productName;
+        int amount;
+        double cost;
+        String expdate;
+        String purchasedate;
+        int location;
+
+
+        if (cursor.moveToFirst())
+        {
+
+            do
+            {
+//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+                productName = cursor.getString(cursor.getColumnIndex("product"));
+                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
+                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
+                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
+                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
+                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
+                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
+//
+                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
+                //Log.d("getAllItems", " piece = " + location);
+            }
+            while (cursor.moveToNext());
+
+
+        }
+
+        db.close();
+
+        return itemList;
+
+
+
+
+    }
+
+    //  ==============================================================================================
+    //  Places
+    public void updatePlace(Place n)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("UPDATE " + TABLE_PLACES + " SET placename = '" + n.getPlace() + "' WHERE placeId = '" + n.getPlaceId() + "';");
+
+        db.close();
     }
 
 
@@ -536,13 +587,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 //Log.d("getAllPlaces", "post .add");
             }
             while (cursor.moveToNext());
-            Log.d("getAllPlaces", "end of loop");
         }
 
 
 
         db.close();
-        Log.d("listOfPlaces", "Return");
         return listOfPlaces;
     }
     public void addNewPlace(String p)
@@ -560,58 +609,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //  ==============================================================================================
 
-    @SuppressLint("Range")
-    public ArrayList<Item> sortAllItemsBy(String sortBy)
-    {
 
-        Log.d("getAllItemsBy", "Start");
-        ArrayList<Item> itemList = new ArrayList<Item>();
-
-        String selectQuery = "SELECT * FROM " + TABLE_USERS + " INNER JOIN " + TABLE_PLACES + " ON " + TABLE_PLACES + ".username = " + TABLE_USERS + ".username " + "INNER JOIN " + TABLE_ITEMS + " ON " + TABLE_PLACES + ".placeId = " + TABLE_ITEMS + ".placeId WHERE " + TABLE_USERS + ".username = '" +  AppData.getUsername() + "' ORDER BY " + sortBy + ";";
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Log.d("getAllItems", "Statement");
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        int itemId;
-        String productName;
-        int amount;
-        double cost;
-        String expdate;
-        String purchasedate;
-        int location;
-
-
-        Log.d("getAllItems", "Move to first");
-        if (cursor.moveToFirst())
-        {
-
-            do
-            {
-//                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
-                productName = cursor.getString(cursor.getColumnIndex("product"));
-                amount = Integer.parseInt(cursor.getString(cursor.getColumnIndex("amount")));
-                cost = Double.parseDouble(cursor.getString(cursor.getColumnIndex("cost")));
-                expdate = cursor.getString(cursor.getColumnIndex("expdate"));
-                purchasedate = cursor.getString(cursor.getColumnIndex("purchasedate"));
-                location = Integer.parseInt(cursor.getString(cursor.getColumnIndex("placeId")));
-                itemId = Integer.parseInt(cursor.getString(cursor.getColumnIndex("itemId")));
-//
-                itemList.add(new Item(productName, amount, cost, expdate, purchasedate, location, itemId));
-                //Log.d("getAllItems", " piece = " + location);
-            }
-            while (cursor.moveToNext());
-
-
-        }
-
-        db.close();
-
-        Log.d("SortAllItems", "Return");
-        return itemList;
-
-    }
 
 
 }
