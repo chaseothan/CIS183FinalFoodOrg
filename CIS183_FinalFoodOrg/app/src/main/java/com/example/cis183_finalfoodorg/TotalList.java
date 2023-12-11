@@ -126,6 +126,16 @@ public class TotalList extends AppCompatActivity {
                 startActivity(productProfile);
             }
         });
+        lv_j_totalList_listOfItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                
+
+
+                return false;
+            }
+        });
     }
 
 
